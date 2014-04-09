@@ -1,0 +1,52 @@
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\bin\x86\Debug\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\obj\x86\Debug\ModelAnimationPipeline.pdb

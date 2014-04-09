@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>CubeTest.fbx</Source>
+      <Name>CubeTest</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+      <Parameters>
+        <Data Key="AnalyseBlendShapes">All</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTest.xnb</Output>
+      <Time>2014-03-11T18:57:30.8506365+11:00</Time>
+    </Item>
+    <Item>
+      <Source>alienLarva_v21.fbx</Source>
+      <Name>alienLarva_v21</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\alienLarva_v21.xnb</Output>
+      <Time>2013-11-01T15:02:49.8023769+11:00</Time>
+    </Item>
+    <Item>
+      <Source>CubeTest2.fbx</Source>
+      <Name>CubeTest2</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTest2.xnb</Output>
+      <Time>2014-04-08T16:52:53.0425689+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Effects\AnimatableModel.fx</Source>
+      <Name>Effects\AnimatableModel</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Effects\AnimatableModel.xnb</Output>
+      <Time>2014-04-09T13:19:05.1394993+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Effects\PoopTest.fx</Source>
+      <Name>Effects\PoopTest</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Effects\PoopTest.xnb</Output>
+      <Time>2014-04-07T23:00:11.165924+10:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExampleContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExampleContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll</Key>
+        <Value>2014-04-09T13:19:33.9041445+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-06-15T13:43:20.2494475+10:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

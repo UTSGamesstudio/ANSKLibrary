@@ -1,0 +1,42 @@
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\11424518\Desktop\sneaky-pants(MR)\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Christopher\Documents\Visual Studio 2010\Projects\Sneaky Pants\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\sneaky-pants\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\11424518\Desktop\group8 - Copy\src\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Work\SneakyPants3DStuff\AndAgain\TheGreatAlienEscape\src\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
