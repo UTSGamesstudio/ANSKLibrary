@@ -81,6 +81,7 @@
       <Name>CubeTest2</Name>
       <Importer>ModelAnimationImporterFbx</Importer>
       <Processor>ModelAnimationProcessor</Processor>
+      <ProcessorParameters_AnalyseBlendShapes>All</ProcessorParameters_AnalyseBlendShapes>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

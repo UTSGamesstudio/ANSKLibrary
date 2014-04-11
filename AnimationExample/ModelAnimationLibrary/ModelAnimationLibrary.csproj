@@ -102,9 +102,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ANSKModelContent.cs" />
-    <Compile Include="ANSKTagData.cs" />
     <Compile Include="ANSKVertexDeclaration.cs" />
     <Compile Include="BlendShape.cs" />
+    <Compile Include="BlendShapeComplex.cs" />
+    <Compile Include="BlendShapeContent.cs" />
+    <Compile Include="BlendShapeManager.cs" />
+    <Compile Include="BlendShapeVert.cs" />
     <Compile Include="DebugShapeRenderer.cs" />
     <Compile Include="ShaderVars\float4.cs" />
     <Compile Include="ShaderVars\int4.cs" />

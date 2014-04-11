@@ -123,28 +123,26 @@ namespace AnimationExample
                 _modelTrans *= Matrix.CreateTranslation(0, 0, -0.5f);
             if (_inputs[Keys.A])
                 _modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(2));
-            //_modelTrans *= Matrix.CreateTranslation(-0.5f, 0, 0f);
+                //_modelTrans *= Matrix.CreateTranslation(-0.5f, 0, 0f);
+                //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 0);
             else if (_inputs[Keys.D])
                 _modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(-2));
                 //_modelTrans *= Matrix.CreateTranslation(0.5f, 0, 0.5f);
+                //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 1);
             if (_inputs.IsFirstPressed(Keys.E))
-                _model.PlayAnimation("One");
+                //_model.PlayAnimation("One");
+                _model.AAC.BlendShapesControl.ChangeBlendValue("InnerBlend", 1);
             else if (_inputs.IsFirstPressed(Keys.Q))
-                _model.PlayAnimation("Two");
+                //_model.PlayAnimation("Two");
+                _model.AAC.BlendShapesControl.ChangeBlendValue("InnerBlend", 0);
 
-            //if (_inputs.IsFirstPressed(Keys.W))
+                //if (_inputs.IsFirstPressed(Keys.W))
                 //_test._model.PlayAnimation("One");
 
-            //if (_inputs.IsFirstPressed(Keys.S))
+                //if (_inputs.IsFirstPressed(Keys.S))
                 //_test._model.PlayAnimation("Two");
 
             _model.Update(gameTime, _modelTrans);
-
-            // Blend shapes are buggy and don't work.
-            //if (_inputs.IsFirstPressed(Keys.A))
-                //_test._model.ANSK.AdvancedAnimationControl.BlendShapesControl.ChangeBlendValue("OuterBlend", 1);
-            //if (_inputs.IsFirstReleased(Keys.A))
-              //  _test._model.ANSK.AdvancedAnimationControl.BlendShapesControl.ChangeBlendValue("OuterBlend", 0);
 
             // TODO: Add your update logic here
 

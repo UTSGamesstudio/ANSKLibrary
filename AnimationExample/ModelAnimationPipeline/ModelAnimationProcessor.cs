@@ -47,12 +47,15 @@ namespace ModelAnimationPipeline
 
             Skeleton skele = input.ANSKData.CollectSkeleton();
 
-            ANSKTagData tag = p.Process(input.NodeContent, context);
+            SkinningData skin = p.Process(input.NodeContent, context);
 
+            List<BlendShapeContent> bShapes;
             if (_scanBlendShapes == ANSKBlendShapeImportOptions.All)
-                tag.BlendShapes = input.ANSKData.CollectBlendShapes(false);
+                bShapes = input.ANSKData.CollectBlendShapes(false);
             else if (_scanBlendShapes == ANSKBlendShapeImportOptions.Keyworded)
-                tag.BlendShapes = input.ANSKData.CollectBlendShapes(true);
+                bShapes = input.ANSKData.CollectBlendShapes(true);
+            else
+                bShapes = null;
 
             List<int> xnaIndList = new List<int>();
 
@@ -90,7 +93,7 @@ namespace ModelAnimationPipeline
                 }
             }
 
-            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, skele, tag);
+            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, skele, skin, bShapes);
         }
 
         [DisplayName("ANSK Blend Shape Import")]
@@ -104,7 +107,7 @@ namespace ModelAnimationPipeline
     /// adding animation support.
     /// </summary>
     //[ContentProcessor]
-    public class ModelAnimationProcessorProcess : ContentProcessor<NodeContent, ANSKTagData>
+    public class ModelAnimationProcessorProcess : ContentProcessor<NodeContent, SkinningData>
     {
         static private AnimationClip _first = null;
 
@@ -112,7 +115,7 @@ namespace ModelAnimationPipeline
         /// The main Process method converts an intermediate format content pipeline
         /// NodeContent tree to a ModelContent object with embedded animation data.
         /// </summary>
-        public override ANSKTagData Process(NodeContent input, ContentProcessorContext context)
+        public override SkinningData Process(NodeContent input, ContentProcessorContext context)
         {
             //System.Diagnostics.Debugger.Launch();
 
@@ -180,7 +183,7 @@ namespace ModelAnimationPipeline
             //model.Tag = new SkinningData(animationClips, bindPose,
               //                           inverseBindPose, skeletonHierarchy, headSkeleHierarchy); // Add a new parameter that take the list of head bone ints.
             //model.Tag = new ANSKTagData(new SkinningData(animationClips, bindPose, inverseBindPose, skeletonHierarchy, headSkeleHierarchy));
-            return new ANSKTagData(new SkinningData(animationClips, bindPose, inverseBindPose, skeletonHierarchy, headSkeleHierarchy));
+            return new SkinningData(animationClips, bindPose, inverseBindPose, skeletonHierarchy, headSkeleHierarchy);
 
 
             /*Debug.WriteLine(bones.Count);

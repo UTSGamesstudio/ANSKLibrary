@@ -25,9 +25,11 @@ namespace ModelAnimationLibrary
         [ContentSerializer]
         public Skeleton Joints { get; set; }
         [ContentSerializer]
-        public ANSKTagData TagData { get; set; }
+        public SkinningData Skin { get; set; }
+        [ContentSerializer]
+        public List<BlendShapeContent> BlendShapes { get; set; }
 
-        public ANSKModelContent(List<Vector3> verts, List<int> vertInd, List<Vector2> uv, List<int> uvInd, List<int> edges, List<Vector3> normals, Skeleton joints, ANSKTagData tagData)
+        public ANSKModelContent(List<Vector3> verts, List<int> vertInd, List<Vector2> uv, List<int> uvInd, List<int> edges, List<Vector3> normals, Skeleton joints, SkinningData skin, List<BlendShapeContent> bShapes)
         {
             Verticies = verts;
             VertexIndicies = vertInd;
@@ -36,7 +38,8 @@ namespace ModelAnimationLibrary
             Edges = edges;
             Normals = normals;
             Joints = joints;
-            TagData = tagData;
+            Skin = skin;
+            BlendShapes = bShapes;
         }
 
         private ANSKModelContent()

@@ -15,9 +15,8 @@ namespace ModelAnimationLibrary
         private static SamplerState Sampler3DNormal = SamplerState.LinearWrap;               // Default 3D GraphicsDevice sampler state.
         private static DepthStencilState DepthStencil3DNormal = DepthStencilState.Default;   // Default 3D GraphicsDevice depth stencil state.
 
-        private ANSK _ansk;
+        private AAC _aac;
         private SkinningData _skin;
-        private ANSKTagData _tagData;
         private AnimationPlayer _player;
         private AnimationClip _currentClip;
         private List<Vector3> _verts;
@@ -30,22 +29,20 @@ namespace ModelAnimationLibrary
         private List<Joint> _joints;
         private Effect _effect;
         private ANSKVertexDeclaration[] _verticies;
-        private VertexPositionColor[] _poop;
         private VertexBuffer _vertBuffer;
         private IndexBuffer _indBuffer;
         private GraphicsDevice _gDevice;
         private Game _game;
 
         public List<Vector3> Verticies { get { return _verts; } set { _verts = value; CreateDeclarationList(); } }
+        public List<short> Indices { get { return _indicies; } }
 
         public AnimationPlayer Player { get { return _player; } }
         public AnimationClip AnimationClip { get { return _currentClip; } set { _currentClip = value; } }
-
-        //public ANSKTagData TagData { get { return _tagData; } }
+        public AAC AAC { get { return _aac; } }
 
         public ANSKModel(ANSKModelContent content)
-        {
-            _tagData = content.TagData;
+        {            
             _verts = content.Verticies;
             RemakeIndices(content.VertexIndicies);
             _uvs = content.Uvs;
@@ -54,13 +51,14 @@ namespace ModelAnimationLibrary
             _normals = content.Normals;
             _skeleton = content.Joints;
             _joints = _skeleton.ToJointList();
-            _skin = content.TagData.SkinData;
+            _skin = content.Skin;
 
             _skeleton.Init();
-            // Find a way to load in the effect;
 
             _verticies = new ANSKVertexDeclaration[_verts.Count];
-            _poop = new VertexPositionColor[_verts.Count];
+
+            _aac = new AAC();
+            _aac.LoadBlendShapes(content.BlendShapes, this);
         }
 
         private void RemakeIndices(List<int> inds)
@@ -88,18 +86,15 @@ namespace ModelAnimationLibrary
 
             try
             {
-                //_vertBuffer = new VertexBuffer(_gDevice, typeof(ANSKVertexDeclaration), _verts.Count, BufferUsage.None);
-                //_indBuffer = new IndexBuffer(_gDevice, IndexElementSize.SixteenBits, sizeof(int) * _indicies.Count, BufferUsage.None);
                 _vertBuffer = new VertexBuffer(_game.GraphicsDevice, typeof(ANSKVertexDeclaration), _verts.Count, BufferUsage.WriteOnly);
-                //_vertBuffer = new VertexBuffer(_game.GraphicsDevice, typeof(VertexPositionColor), _verts.Count, BufferUsage.WriteOnly);
                 _indBuffer = new IndexBuffer(_game.GraphicsDevice, IndexElementSize.SixteenBits, sizeof(short) * _indicies.Count, BufferUsage.WriteOnly);
             }
             catch (Exception e)
             {
-                int poo = 0;
+                throw new Exception("Error declaring vertex and index buffers.", e);
             }
-            _ansk = new ANSK(this, game);
-            _player = new AnimationPlayer(_tagData.SkinData);
+
+            _player = new AnimationPlayer(_skin);
 
             _indBuffer.SetData<short>(_indicies.ToArray());
             //_gDevice.Indices = _indBuffer;
@@ -111,20 +106,16 @@ namespace ModelAnimationLibrary
         {
             for (int i = 0; i < _verts.Count; i++)
             {
-                // TODO -- This is commented as we do not have the logic that generates the
-                // required indices and weights per vertex.
-
                 int4 ints = VertexToJointIndices(i);
-
                 float4 weights = VertexToJointsWeights(i, ints);
 
                 _verticies[i] = new ANSKVertexDeclaration(_verts[i], _uvs[i], _normals[i], ints, weights, ints.Count);
-                //_verticies[i] = new ANSKVertexDeclaration(_verts[i], Color.Red);
-                _poop[i] = new VertexPositionColor(_verts[i], Color.Red);
             }
 
+            _game.GraphicsDevice.SetVertexBuffer(null);
+
             _vertBuffer.SetData<ANSKVertexDeclaration>(_verticies.ToArray<ANSKVertexDeclaration>());
-            //_vertBuffer.SetData<VertexPositionColor>(_poop.ToArray<VertexPositionColor>());
+
             _game.GraphicsDevice.SetVertexBuffer(_vertBuffer);
         }
 
@@ -169,7 +160,7 @@ namespace ModelAnimationLibrary
 
         public void Update(GameTime gameTime, Matrix transform)
         {
-            _ansk.Update(gameTime);
+            _aac.Update(gameTime);
             _player.Update(gameTime.ElapsedGameTime, true, transform);
         }
 
@@ -201,21 +192,13 @@ namespace ModelAnimationLibrary
 
             foreach (EffectPass pass in _effect.CurrentTechnique.Passes)
             {
-                //_vertBuffer.SetData<ANSKVertexDeclaration>(_verticies.ToArray<ANSKVertexDeclaration>());
-                //_gDevice.SetVertexBuffer(_vertBuffer);
                 _game.GraphicsDevice.SetVertexBuffer(_vertBuffer);
                 _game.GraphicsDevice.Indices = _indBuffer;
 
                 pass.Apply();
 
-                //_gDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, _verts.Count);
-                //_gDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _indicies.Count, 0, _indicies.Count / 3);
                 _game.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _verts.Count, 0, _indicies.Count);
-                //_game.GraphicsDevice.DrawUserIndexedPrimitives<ANSKVertexDeclaration>(PrimitiveType.TriangleList, _verticies, 0, _verticies.Length, _indicies.ToArray(), 0, _verticies.Length);
-                //_game.GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, _poop, 0, _poop.Length, _indicies.ToArray(), 0, _poop.Length);
-                //DebugShapeRenderer.Draw(gameTime, view, proj);
             }
-            // We use the graphics device Draw Indexed Primitives or something similar.
         }
     }
 }
