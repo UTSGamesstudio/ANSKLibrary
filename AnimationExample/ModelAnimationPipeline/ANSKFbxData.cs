@@ -112,6 +112,29 @@ namespace ModelAnimationPipeline
             return childId;
         }
 
+        public List<Material> CollectMaterials()
+        {
+            List<Material> mats = new List<Material>();
+
+            for (int i = 0; i < _properties.Count; i++)
+            {
+                if (_properties[i].GetType() == typeof(MaterialProperty<MaterialLambertPropertyType>))
+                {
+                    MaterialProperty<MaterialLambertPropertyType> lamb = (MaterialProperty<MaterialLambertPropertyType>)_properties[i];
+
+                    mats.Add(new LambertMaterial(lamb.AmbientColour, lamb.Transparency, lamb.DiffuseColour, lamb.DiffuseFactor, lamb.DiffuseLight, lamb.Emissive, lamb.Opacity, (int)lamb.ShaderModel, lamb.Name));
+                }
+                else if (_properties[i].GetType() == typeof(MaterialProperty<MaterialBlinnPropertyType>))
+                {
+                    MaterialProperty<MaterialBlinnPropertyType> blin = (MaterialProperty<MaterialBlinnPropertyType>)_properties[i];
+
+                    mats.Add(new BlinnMaterial(blin.AmbientColour, blin.Transparency, blin.DiffuseColour, blin.DiffuseFactor, blin.DiffuseLight, blin.Emissive, blin.Opacity, (int)blin.ShaderModel, blin.PropertyType.SpecularColour, blin.PropertyType.Specular, blin.PropertyType.ShininessExponent, blin.PropertyType.Shininess, blin.PropertyType.ReflectionFactor, blin.PropertyType.Reflectivity, blin.Name));
+                }
+            }
+
+            return mats;
+        }
+
         public void LoadFbx(string filePath)
         {
             //System.Diagnostics.Debugger.Launch();
@@ -265,7 +288,29 @@ namespace ModelAnimationPipeline
                 }
                 else
                 {
-                    ProceedToNextObject(reader);
+                    if (name.Contains(ANSKFbxFileKeywords.ObjectNameMaterial))
+                    {
+                        if (name.Contains(ANSKFbxFileKeywords.ObjectNameMaterialLambert))
+                        {
+                            data = new MaterialProperty<MaterialLambertPropertyType>(id, name);
+                            AnalyseMaterialLambert(reader, ref data);
+                            _properties.Add(data);
+                        }
+                        else if (name.Contains(ANSKFbxFileKeywords.ObjectNameMaterialBlinn))
+                        {
+                            data = new MaterialProperty<MaterialBlinnPropertyType>(id, name);
+                            AnalyseMaterialBlinn(reader, ref data);
+                            _properties.Add(data);
+                        }
+                        else if (name.Contains(ANSKFbxFileKeywords.ObjectNameMaterialDefault))
+                        {
+                            data = new MaterialProperty<MaterialLambertPropertyType>(id, name);
+                            AnalyseMaterialLambert(reader, ref data);
+                            _properties.Add(data);
+                        }
+                    }
+                    else
+                        ProceedToNextObject(reader);
                 }
 
                 line = reader.ReadLine();
@@ -319,6 +364,10 @@ namespace ModelAnimationPipeline
                 {
                     ((GeometryProperty<MeshPropertyType>)data).PropertyType.UvIndex.AddRange(CollectIntList(reader, GrabElementNumber(line)));
                     indent--;
+                }
+                else if (line.Contains(ANSKFbxFileKeywords.ObjectPropertyMaterials))
+                {
+                    ((GeometryProperty<MeshPropertyType>)data).PropertyType.MaterialIndex.AddRange(CollectIntList(reader, GrabElementNumber(line)));
                 }
             }
         }
@@ -378,6 +427,137 @@ namespace ModelAnimationPipeline
             }
         }
 
+        private void AnalyseMaterialLambert(StreamReader reader, ref IObjectProperty data)
+        {
+            string line = "";
+
+            while ((line = reader.ReadLine()) != "\t}")
+            {
+                if (line.Contains(ANSKFbxFileKeywords.MaterialShadingModel))
+                    ScanMaterialShadingModel(line, ref data);
+                else if (line.Contains(ANSKFbxFileKeywords.MaterialPropertiesHeading))
+                    ScanMaterialLambertProperties(reader, ref data);
+            }
+        }
+
+        private void AnalyseMaterialBlinn(StreamReader reader, ref IObjectProperty data)
+        {
+            string line = "";
+
+            while ((line = reader.ReadLine()) != "\t}")
+            {
+                if (line.Contains(ANSKFbxFileKeywords.MaterialShadingModel))
+                    ScanMaterialShadingModel(line, ref data);
+                else if (line.Contains(ANSKFbxFileKeywords.MaterialPropertiesHeading))
+                    ScanMaterialBlinnProperties(reader, ref data);
+            }
+        }
+
+        private void ScanMaterialLambertProperties(StreamReader reader, ref IObjectProperty data)
+        {
+            string line;
+            string pName = "", pType = ""; string[] extra;
+
+            while ((line = reader.ReadLine()).Contains(ANSKFbxFileKeywords.ObjectPropertyStart))
+            {
+                ScanPropertyLine(line, out pName, out pType, out extra);
+
+                switch (pName)
+                {
+                    case ANSKFbxFileKeywords.MaterialPropertyAmbientColour:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).AmbientColour = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyDiffuseColour:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).DiffuseColour = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyDiffuseFactor:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).DiffuseFactor = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MateiralPropertyDiffuseLight:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).DiffuseLight = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyTransparency:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).Transparency = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyEmissive:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).Emissive = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyOpacity:
+                        ((MaterialProperty<MaterialLambertPropertyType>)data).Opacity = PropertyExtraToDouble(extra);
+                        break;
+                }
+            }
+        }
+
+        private void ScanMaterialBlinnProperties(StreamReader reader, ref IObjectProperty data)
+        {
+            string line;
+            string pName = "", pType = ""; string[] extra;
+
+            while ((line = reader.ReadLine()).Contains(ANSKFbxFileKeywords.ObjectPropertyStart))
+            {
+                ScanPropertyLine(line, out pName, out pType, out extra);
+
+                switch (pName)
+                {
+                    case ANSKFbxFileKeywords.MaterialPropertyAmbientColour:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).AmbientColour = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyDiffuseColour:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).DiffuseColour = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyDiffuseFactor:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).DiffuseFactor = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MateiralPropertyDiffuseLight:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).DiffuseLight = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyTransparency:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).Transparency = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertySpecularColour:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).PropertyType.SpecularColour = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyShininessExponent:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).PropertyType.ShininessExponent = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyReflectionFactor:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).PropertyType.ReflectionFactor = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyEmissive:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).Emissive = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertySpecular:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).PropertyType.Specular = PropertyExtraToVector3(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyShiniess:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).PropertyType.Shininess = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyOpacity:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).Opacity = PropertyExtraToDouble(extra);
+                        break;
+                    case ANSKFbxFileKeywords.MaterialPropertyReflectivity:
+                        ((MaterialProperty<MaterialBlinnPropertyType>)data).PropertyType.Reflectivity = PropertyExtraToDouble(extra);
+                        break;
+                }
+            }
+        }
+
+        private void ScanMaterialShadingModel(string line, ref IObjectProperty data)
+        {
+            string[] split = line.Split('"');
+
+            switch (split[1])
+            {
+                case "lambert":
+                    ((MaterialProperty<MaterialLambertPropertyType>)data).ShaderModel = MaterialProperty<MaterialLambertPropertyType>.Shader.Lambert;
+                    break;
+                case "phong":
+                    ((MaterialProperty<MaterialBlinnPropertyType>)data).ShaderModel = MaterialProperty<MaterialBlinnPropertyType>.Shader.Phong;
+                    break;
+            }
+        }
+
         private void AnalyseGeometryLimbNode(StreamReader reader, ref IObjectProperty data)
         {
             string line = "";
@@ -398,7 +578,7 @@ namespace ModelAnimationPipeline
                 else if (data.GetType() == typeof(LimbNodeProperty<LimbNodeJointType>))
                 {
                     if (line.Contains(ANSKFbxFileKeywords.LimbNodePropertiesHeading))
-                        ScanProperties(reader, ref data);
+                        ScanLimbNodeJointTypeProperties(reader, ref data);
                 }
             }
         }
@@ -411,7 +591,7 @@ namespace ModelAnimationPipeline
                 ((LimbNodeProperty<LimbNodeNodeAttributeType>)data).PropertyType.IsSkeletonType = true;
         }
 
-        private void ScanProperties(StreamReader reader, ref IObjectProperty data)
+        private void ScanLimbNodeJointTypeProperties(StreamReader reader, ref IObjectProperty data)
         {
             string line;
             string pName = "", pType = ""; string[] extra;
@@ -678,6 +858,11 @@ namespace ModelAnimationPipeline
         {
             return new Vector3(float.Parse(extra[0]), float.Parse(extra[1]), float.Parse(extra[2]));
         }
+
+        private double PropertyExtraToDouble(string[] extra)
+        {
+            return double.Parse(extra[0]);
+        }
     }
 
     public class ANSKFbxFileKeywords
@@ -691,6 +876,7 @@ namespace ModelAnimationPipeline
         public const string ObjectPropertyNormals = "Normals: ";
         public const string ObjectPropertyWeights = "Weights: ";
         public const string ObjectPropertyBlendShape = "\"Shape\"";
+        public const string ObjectPropertyMaterials = "Materials: ";
         public const string MeshPropertyPolygonVertexIndex = "PolygonVertexIndex: ";
         public const string ObjectPropertyEdges = "Edges: ";
         public const string MeshPropertyUV = "\tUV: ";
@@ -700,5 +886,24 @@ namespace ModelAnimationPipeline
         public const string PropertiesLocalTranslation = "Lcl Translation";
         public const string PropertiesLocalRotation = "Lcl Rotation";
         public const string PropertiesTypeFlagsHeading = "TypeFlags: ";
+        public const string ObjectNameMaterial = "Material::";
+        public const string ObjectNameMaterialLambert = "lambert";
+        public const string ObjectNameMaterialBlinn = "blinn";
+        public const string ObjectNameMaterialDefault = "Default_Material";
+        public const string MaterialShadingModel = "ShadingModel: ";
+        public const string MaterialPropertiesHeading = "Properties";
+        public const string MaterialPropertyAmbientColour = "AmbientColor";
+        public const string MaterialPropertyDiffuseColour = "DiffuseColor";
+        public const string MaterialPropertyDiffuseFactor = "DiffuseFactor";
+        public const string MateiralPropertyDiffuseLight = "Diffuse";
+        public const string MaterialPropertyTransparency = "TransparencyFactor";
+        public const string MaterialPropertyEmissive = "Emissive";
+        public const string MaterialPropertyOpacity = "Opacity";
+        public const string MaterialPropertySpecularColour = "SpecularColor";
+        public const string MaterialPropertySpecular = "Specular";
+        public const string MaterialPropertyShininessExponent = "ShininessExponent";
+        public const string MaterialPropertyShiniess = "Shininess";
+        public const string MaterialPropertyReflectionFactor = "ReflectionFactor";
+        public const string MaterialPropertyReflectivity = "Reflectivity";
     }
 }

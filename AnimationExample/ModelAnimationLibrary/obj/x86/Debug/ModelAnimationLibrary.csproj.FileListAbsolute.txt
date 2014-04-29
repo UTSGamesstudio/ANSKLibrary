@@ -36,7 +36,7 @@ C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnim
 C:\Users\Joshua\Desktop\Uni\Graphics Project\Projects\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.dll
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\bin\x86\Debug\ModelAnimationLibrary.pdb
-C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.dll
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationLibrary\obj\x86\Debug\ModelAnimationLibrary.csprojResolveAssemblyReference.cache

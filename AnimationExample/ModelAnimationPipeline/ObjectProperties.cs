@@ -207,4 +207,62 @@ namespace ModelAnimationPipeline
         public Type GetType() { return typeof(LimbNodeProperty<T>); }
     }
     #endregion
+
+    #region MaterialProperty
+    public class MaterialProperty : ObjectProperty
+    {
+        public enum Shader { Lambert = 0, Phong }
+
+        private Vector3 _colour;
+        private double _transparency;
+        private Vector3 _ambColour;
+        private double _diffuseFactor;
+        private Vector3 _diffuseColour;
+        private Vector3 _emissive;
+        private double _opacity;
+        private Shader _shader;
+
+        public Vector3 Colour { get { return _colour; } set { _colour = value; } }
+        public double Transparency { get { return _transparency; } set { _transparency = value; } }
+        public Vector3 AmbientColour { get { return _ambColour; } set { _ambColour = value; } }
+        public Vector3 DiffuseColour { get { return _diffuseColour; } set { _diffuseColour = value; } }
+        public double DiffuseFactor { get { return _diffuseFactor; } set { _diffuseFactor = value; } }
+        public Vector3 Emissive { get { return _emissive; } set { _emissive = value; } }
+        public double Opacity { get { return _opacity; } set { _opacity = value; } }
+        public Shader ShaderModel { get { return _shader; } set { _shader = value ; } }
+
+        public MaterialProperty(int id, string name) : base(id, name) { }
+
+        public Type GetType() { return typeof(MaterialProperty); }
+    }
+
+    public class MaterialProperty<T> : ObjectProperty<T> where T : IObjectPropertyType, new()
+    {
+        public enum Shader { Lambert = 0, Phong }
+
+        private Vector3 _colour;
+        private double _transparency;
+        private Vector3 _ambColour;
+        private double _diffuseFactor;
+        private Vector3 _diffuseColour;
+        private Vector3 _diffLight;
+        private Vector3 _emissive;
+        private double _opacity;
+        private Shader _shader;
+
+        public Vector3 Colour { get { return _colour; } set { _colour = value; } }
+        public double Transparency { get { return _transparency; } set { _transparency = value; } }
+        public Vector3 AmbientColour { get { return _ambColour; } set { _ambColour = value; } }
+        public Vector3 DiffuseColour { get { return _diffuseColour; } set { _diffuseColour = value; } }
+        public double DiffuseFactor { get { return _diffuseFactor; } set { _diffuseFactor = value; } }
+        public Vector3 DiffuseLight { get { return _diffLight; } set { _diffLight = value; } }
+        public Vector3 Emissive { get { return _emissive; } set { _emissive = value; } }
+        public double Opacity { get { return _opacity; } set { _opacity = value; } }
+        public Shader ShaderModel { get { return _shader; } set { _shader = value; } }
+
+        public MaterialProperty(int id, string name) : base(id, name) { }
+
+        public Type GetType() { return typeof(MaterialProperty<T>); }
+    }
+#endregion
 }

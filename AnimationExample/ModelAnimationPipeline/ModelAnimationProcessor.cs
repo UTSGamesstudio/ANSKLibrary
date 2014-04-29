@@ -40,12 +40,15 @@ namespace ModelAnimationPipeline
             List<int> uvIndex = null;
             List<int> edges = null;
             List<Vector3> normals = null;
+            List<int> materials = null;
+            ModelAnimationLibrary.MaterialContent matContent;
             //System.Diagnostics.Debugger.Launch();
 
             //ModelProcessor p = new ModelProcessor();
             ModelAnimationProcessorProcess p = new ModelAnimationProcessorProcess();
 
             Skeleton skele = input.ANSKData.CollectSkeleton();
+            List<Material> mats = input.ANSKData.CollectMaterials();
 
             SkinningData skin = p.Process(input.NodeContent, context);
 
@@ -58,6 +61,9 @@ namespace ModelAnimationPipeline
                 bShapes = null;
 
             List<int> xnaIndList = new List<int>();
+            List<int> xnaMatIndList = new List<int>();
+
+            int materialListCount = 0;
 
             for (int i = 0; i < input.ANSKData.Properties.Count; i++)
             {
@@ -71,10 +77,21 @@ namespace ModelAnimationPipeline
                     uvIndex = ((GeometryProperty<MeshPropertyType>)type).PropertyType.UvIndex;
                     edges = ((GeometryProperty<MeshPropertyType>)type).PropertyType.Edges;
                     normals = ((GeometryProperty<MeshPropertyType>)type).Normals;
+                    materials = ((GeometryProperty<MeshPropertyType>)type).PropertyType.MaterialIndex;
+
+                    foreach (int m in materials)
+                    {
+                        if (m > materialListCount)
+                            materialListCount = m;
+                    }
+
+                    int matCount = 0;
 
                     // Need to fix the indicies as the .fbx file XOR's a -1 to the indicie that ends a polygon face.
                     // Also the indice list is structured in a triangle fan sectioned list (A combination of triangle fans).
                     // We need to remake the indice list as a triangle strip.
+
+                    // TODO - This needs to remade to work on any polygonal face, rather than a 4 vertex face.
                     for (int q = 0; q < vertIndex.Count; q++)
                     {
                         if (vertIndex[q] < 0)
@@ -82,18 +99,28 @@ namespace ModelAnimationPipeline
                             // We can do this as the fbx file will only have this XOR'd section
                             // at the end of a face with 3 vertices or more.
                             xnaIndList.Add(vertIndex[q - 3]);
+                            xnaMatIndList.Add(materials[matCount]);
                             xnaIndList.Add(vertIndex[q - 1]);
+                            xnaMatIndList.Add(materials[matCount]);
                             xnaIndList.Add((vertIndex[q] * -1) - 1);
+                            xnaMatIndList.Add(materials[matCount]);
+                            if (materials.Count != 1)
+                                matCount++;
                         }
                         else
+                        {
                             xnaIndList.Add(vertIndex[q]);
+                            xnaMatIndList.Add(materials[matCount]);
+                        }
                     }
 
                     vertIndex = xnaIndList;
                 }
             }
 
-            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, skele, skin, bShapes);
+            matContent = new ModelAnimationLibrary.MaterialContent(mats, xnaMatIndList);
+
+            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, skele, skin, bShapes, matContent);
         }
 
         [DisplayName("ANSK Blend Shape Import")]

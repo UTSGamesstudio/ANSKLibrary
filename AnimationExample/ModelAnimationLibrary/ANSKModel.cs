@@ -33,6 +33,8 @@ namespace ModelAnimationLibrary
         private IndexBuffer _indBuffer;
         private GraphicsDevice _gDevice;
         private Game _game;
+        private List<Material> _materials;
+        private List<int> _materialIndices;
 
         public List<Vector3> Verticies { get { return _verts; } set { _verts = value; CreateDeclarationList(); } }
         public List<short> Indices { get { return _indicies; } }
@@ -52,6 +54,8 @@ namespace ModelAnimationLibrary
             _skeleton = content.Joints;
             _joints = _skeleton.ToJointList();
             _skin = content.Skin;
+            _materials = content.Materials.Materials;
+            _materialIndices = content.Materials.MaterialIndicieList;
 
             _skeleton.Init();
 
@@ -109,7 +113,7 @@ namespace ModelAnimationLibrary
                 int4 ints = VertexToJointIndices(i);
                 float4 weights = VertexToJointsWeights(i, ints);
 
-                _verticies[i] = new ANSKVertexDeclaration(_verts[i], _uvs[i], _normals[i], ints, weights, ints.Count);
+                _verticies[i] = new ANSKVertexDeclaration(_verts[i], _materials[_materialIndices[i]].DiffuseColour.ToVector4(), _uvs[i], _normals[i], ints, weights, ints.Count);
             }
 
             _game.GraphicsDevice.SetVertexBuffer(null);
@@ -158,6 +162,32 @@ namespace ModelAnimationLibrary
             _game.GraphicsDevice.SamplerStates[0] = Sampler3DNormal;
         }
 
+        public void CenterModelToOrigin()
+        {
+            Vector3 min = Vector3.Zero;
+            Vector3 max = Vector3.Zero;
+            Vector3 mid = Vector3.Zero;
+
+            for (int i = 0; i < _verts.Count; i++)
+            {
+                min = Vector3.Min(min, _verts[i]);
+                max = Vector3.Max(max, _verts[i]);
+            }
+
+            mid = ((max - min) * 0.5f) + min;
+
+            for (int i = 0; i < _verts.Count; i++)
+            {
+                Vector3 temp = _verts[i];
+                temp.X -= mid.X;
+                temp.Y -= mid.Y;
+                temp.Z -= mid.Z;
+                _verts[i] = temp;
+            }
+
+            CreateDeclarationList();
+        }
+
         public void Update(GameTime gameTime, Matrix transform)
         {
             _aac.Update(gameTime);
@@ -175,18 +205,30 @@ namespace ModelAnimationLibrary
 
             Matrix worldProj = transform * view * proj;
 
-            _effect.CurrentTechnique = _effect.Techniques["AnimatableModelTechnique"];
+            _effect.CurrentTechnique = _effect.Techniques["ANSKLambert"];
             _effect.Parameters["worldProj"].SetValue(worldProj);
             _effect.Parameters["bones"].SetValue(bones);
             _effect.Parameters["vsArrayIndex"].SetValue(0);
-            _effect.Parameters["psArrayIndex"].SetValue(0);
+            _effect.Parameters["psArrayIndex"].SetValue(1);
+            _effect.Parameters["ambientIntensity"].SetValue(1f);
+            _effect.Parameters["world"].SetValue(transform);
+            _effect.Parameters["diffuseColour"].SetValue(_materials[1].DiffuseColour.ToVector4());
+            _effect.Parameters["diffuseFactor"].SetValue((float)_materials[0].DiffuseFactor);
+            //_effect.Parameters["diffuseLight"].SetValue(_materials[0].DiffuseLight);
+            _effect.Parameters["diffuseLight"].SetValue(Vector3.Forward);
+            _effect.Parameters["specColour"].SetValue(Color.Green.ToVector4());
+            _effect.Parameters["specPos"].SetValue(Vector3.Backward * 3);
 
             List<Vector3> temp = new List<Vector3>();
             for (int i = 0; i < _verticies.Length; i++)
             {
-                temp.Add(Vector3.Transform(_verticies[i].Position, bones[_verticies[i].Indices[0]]));// * bones[_verticies[i].Indices[0]].Translation * _verticies[i].Weights[0]);
+                //temp.Add(Vector3.Transform(_verticies[i].Position, bones[_verticies[i].Indices[0]]));// * bones[_verticies[i].Indices[0]].Translation * _verticies[i].Weights[0]);
+                temp.Add(_verticies[i].Normal + Vector3.Transform(_verticies[i].Position, transform));
+                Vector3 normal = temp[i];
+                normal.Normalize();
                 //temp[i] = Vector3.Transform(temp[i], worldProj);
                 //DebugShapeRenderer.AddBoundingSphere(new BoundingSphere(temp[i], 1), Color.White);
+                DebugShapeRenderer.AddLine(temp[i], temp[i] + normal, Color.White);
                 //DebugShapeRenderer.AddBoundingSphere(new BoundingSphere(_verticies[i].Position, 1), Color.White);
             }
 

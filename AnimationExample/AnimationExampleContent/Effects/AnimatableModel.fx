@@ -4,6 +4,13 @@ float4x4 worldProj;
 int vsArrayIndex;
 int psArrayIndex;
 float4x3 bones[SKINNED_EFFECT_MAX_BONES];
+float ambientIntensity;
+float4 diffuseColour;
+float diffuseFactor;
+float3 diffuseLight;
+float4 specColour;
+float3 specPos;
+float4x4 world;
 
 texture modelTexture;
 sampler2D modelTextureSampler = sampler_state
@@ -18,7 +25,7 @@ sampler2D modelTextureSampler = sampler_state
 struct VSBasicInput
 {
     float4 pos : SV_Position;
-	//float4 color : COLOR0;
+	float4 colour : COLOR0;
 	float2 texCoor : TEXCOORD0;
 	float3 normal : NORMAL0;
 	int4   indices  : BLENDINDICES0;
@@ -29,6 +36,9 @@ struct VSBasicInput
 struct VSBasicOutput
 {
 	float4 pos : SV_Position;
+	float4 colour : COLOR0;
+	float3 normal : TEXCOORD0;
+	float3 view : TEXCOORD1;
 	//float2 texCoor: TEXCOORD0;
 };
 
@@ -53,6 +63,9 @@ VSBasicOutput VSBasic(VSBasicInput input)
 	Skin(input);
 
     output.pos = mul(input.pos, worldProj);
+	output.normal = normalize(mul(input.normal, world));
+	output.colour = input.colour;
+	output.view = normalize(float4(specPos, 1.0) - mul(input.pos, world));
 	//output.pos = input.pos;
 	//output.texCoor = input.texCoor;
 
@@ -65,8 +78,8 @@ float4 PSBasic(VSBasicOutput input) : COLOR0
 	//texColour.a = 1;
 	
 	//return texColour;
-	return float4(1,1,0,1);
-	//return input.color;
+	//return float4(1,1,0,1);
+	return input.colour;
 }
 
 VSBasicOutput VSOutline(VSBasicInput input)
@@ -97,14 +110,26 @@ float4 PSOutline(VSBasicOutput input) : COLOR0
 	//return input.color;
 }
 
+float4 PSLambert(VSBasicOutput input) : COLOR0
+{
+	float4 norm = float4(input.normal, 1.0);
+	float4 diffuse = saturate(dot(-diffuseLight, normalize(norm)));
+	float4 reflect = normalize(2*diffuse*norm-float4(diffuseLight,1.0));
+	float4 specular = pow(saturate(dot(reflect, input.view)),15);
+
+	input.colour.rgb *= ambientIntensity + diffuseFactor * diffuseColour.rgb * diffuse + specColour * specular;
+	return input.colour;
+}
+
 VertexShader VSArray[1]=
 {
 	compile vs_2_0 VSBasic(),
 };
 
-PixelShader PSArray[1]=
+PixelShader PSArray[2]=
 {
 	compile ps_2_0 PSBasic(),
+	compile ps_2_0 PSLambert(),
 };
 
 technique AnimatableModelTechnique
@@ -124,4 +149,13 @@ technique AnimatableModelTechnique
 		//VertexShader = compile vs_2_0 VSBasic();
         //PixelShader = compile ps_2_0 PSBasic();
     }
+}
+
+technique ANSKLambert
+{
+	pass Pass1
+	{
+		VertexShader = VSArray[vsArrayIndex];
+		PixelShader = PSArray[psArrayIndex];
+	}
 }

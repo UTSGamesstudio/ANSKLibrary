@@ -108,7 +108,11 @@
     <Compile Include="BlendShapeContent.cs" />
     <Compile Include="BlendShapeManager.cs" />
     <Compile Include="BlendShapeVert.cs" />
+    <Compile Include="BlinnMaterial.cs" />
     <Compile Include="DebugShapeRenderer.cs" />
+    <Compile Include="LambertMaterial.cs" />
+    <Compile Include="Material.cs" />
+    <Compile Include="MaterialContent.cs" />
     <Compile Include="ShaderVars\float4.cs" />
     <Compile Include="ShaderVars\int4.cs" />
     <Compile Include="Joint.cs" />

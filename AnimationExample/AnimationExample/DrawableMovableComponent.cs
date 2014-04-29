@@ -14,10 +14,11 @@ namespace ProjectSneakyGame
     public class DrawableMovableComponent : DrawableGameComponent
     {
         protected float _speed;
-        protected Vector3 _pos;
+        protected Vector3 _pos, _origPos;
         protected Matrix _trans, _rot, _scale, _main;
         protected Game1 _game;
         protected MovableBoundingBox _bBox;
+        protected float _rotVal;
 
         public float Speed { get { return _speed; } set { _speed = value; } }
         public Vector3 Pos { get { return _pos; } set { _pos = value; } }
@@ -29,19 +30,20 @@ namespace ProjectSneakyGame
 
         public DrawableMovableComponent(Game1 game):base(game)
         {
-            _pos = Vector3.One;
+            _origPos = _pos = Vector3.One;
             _main = Matrix.Identity;
             _trans = Matrix.Identity;
             _rot = Matrix.Identity;
             _scale = Matrix.Identity;
             _game = game;
             _speed = 0;
+            _rotVal = 0;
         }
 
         public DrawableMovableComponent(Game1 game, Vector3 pos)
             : base(game)
         {
-            _pos = pos;
+            _origPos = _pos = pos;
             //_trans.Translation = _pos;
             _trans = Matrix.CreateTranslation(pos);
             _rot = Matrix.Identity;
@@ -49,12 +51,13 @@ namespace ProjectSneakyGame
             _main = Matrix.Identity;
             _speed = 0;
             _game = game;
+            _rotVal = 0;
         }
 
         public DrawableMovableComponent(Game1 game, Vector3 pos, float speed)
             : base(game)
         {
-            _pos = pos;
+            _origPos = _pos = pos;
             //_trans.Translation = _pos;
             _trans = Matrix.CreateTranslation(pos);
             _rot = Matrix.Identity;
@@ -62,6 +65,7 @@ namespace ProjectSneakyGame
             _main = Matrix.Identity;
             _speed = speed;
             _game = game;
+            _rotVal = 0;
         }
 
         public virtual void Translate(Vector3 vec, GameTime g)
@@ -110,8 +114,14 @@ namespace ProjectSneakyGame
 
         public virtual void RotateY(float rot)
         {
-            _rot *= Matrix.CreateRotationY(rot);
-            _pos += _rot.Translation;
+            //_rot *= Matrix.CreateTranslation(-_pos) * Matrix.CreateRotationY(rot) * Matrix.CreateTranslation(_pos);
+            //_rot *= Matrix.CreateRotationY(rot);
+            //_pos += _rot.Translation;
+            float temp = MathHelper.ToRadians(360);
+            if (_rotVal + rot > MathHelper.ToRadians(360))
+                _rotVal = (rot - (MathHelper.ToRadians(360) - _rotVal));
+            else
+                _rotVal += rot;
         }
 
         public virtual void RotateZ(float rot, GameTime g)
@@ -218,6 +228,8 @@ namespace ProjectSneakyGame
 
         public override void Update(GameTime gameTime)
         {
+            //_main = _scale * Matrix.CreateTranslation(_origPos - _pos) *  _rot  * Matrix.CreateTranslation(_origPos + _pos) * _trans;
+            _rot = Matrix.CreateRotationY(_rotVal);
             _main = _scale * _rot * _trans;
 
             if (_bBox != null)

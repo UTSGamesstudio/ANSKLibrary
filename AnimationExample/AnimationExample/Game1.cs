@@ -25,6 +25,7 @@ namespace AnimationExample
         private Camera _camera;
         private ANSKTest _test;
         private ANSKModel _model;
+        private ANSKModelContainer _modelCont;
         private Matrix world, view, proj, _modelTrans;
 
         public Game1()
@@ -60,8 +61,11 @@ namespace AnimationExample
             _camera.TargetSpecified = true;
 
             //_model = new ANSKModel(Content.Load<ANSKModelContent>("alienLarva_v21"));
-            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest2"));
+            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
             _model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("Effects/AnimatableModel"), this);
+            _model.CenterModelToOrigin();
+            _modelCont = new ANSKModelContainer(_model, this, Vector3.Zero);
+            //_modelCont.Translate(0, 0, 2.6f);
             //_model.PlayAnimation("walk");
             _model.PlayAnimation("One");
             //_camera.Translate(Vector3.Left * 15);
@@ -118,15 +122,19 @@ namespace AnimationExample
             // Please use _inputs for checking inputs.
 
             if (_inputs[Keys.W])
-                _modelTrans *= Matrix.CreateTranslation(0, 0, 0.5f);
+                //_modelTrans *= Matrix.CreateTranslation(0, 0, 0.5f);
+                _modelCont.Translate(0, 0, 0.5f);
             else if (_inputs[Keys.S])
-                _modelTrans *= Matrix.CreateTranslation(0, 0, -0.5f);
+                //_modelTrans *= Matrix.CreateTranslation(0, 0, -0.5f);
+                _modelCont.Translate(0, 0, -0.5f);
             if (_inputs[Keys.A])
-                _modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(2));
-                //_modelTrans *= Matrix.CreateTranslation(-0.5f, 0, 0f);
-                //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 0);
+                _modelCont.RotateY(MathHelper.ToRadians(2));
+            //_modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(2));
+            //_modelTrans *= Matrix.CreateTranslation(-0.5f, 0, 0f);
+            //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 0);
             else if (_inputs[Keys.D])
-                _modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(-2));
+                _modelCont.RotateY(MathHelper.ToRadians(-2));
+                //_modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(-2));
                 //_modelTrans *= Matrix.CreateTranslation(0.5f, 0, 0.5f);
                 //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 1);
             if (_inputs.IsFirstPressed(Keys.E))
@@ -142,7 +150,8 @@ namespace AnimationExample
                 //if (_inputs.IsFirstPressed(Keys.S))
                 //_test._model.PlayAnimation("Two");
 
-            _model.Update(gameTime, _modelTrans);
+            //_model.Update(gameTime, _modelTrans);
+            _modelCont.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -157,10 +166,12 @@ namespace AnimationExample
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _model.Draw(gameTime, Matrix.Identity, _camera.View, _camera.Projection);
+            //_model.Draw(gameTime, Matrix.Identity, _camera.View, _camera.Projection, _modelTrans);
+            _modelCont.Draw(gameTime, _camera);
             //_model.Draw(gameTime, world, view, proj);
             //_test.Draw(gameTime, _camera);
             // TODO: Add your drawing code here
+            DebugShapeRenderer.Draw(gameTime, _camera.View, _camera.Projection);
 
             base.Draw(gameTime);
         }

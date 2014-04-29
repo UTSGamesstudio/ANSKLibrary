@@ -17,11 +17,13 @@ namespace ModelAnimationPipeline
         private List<int> _edges;
         private List<Vector2> _uvs;
         private List<int> _uvIndex;
+        private List<int> _materialIndex;
 
         public List<int> PolygonVertexIndex { get { return _polyVertIndex; } set { _polyVertIndex = value; } }
         public List<int> Edges { get { return _edges; } set { _edges = value; } }
         public List<Vector2> Uvs { get { return _uvs; } set { _uvs = value; } }
         public List<int> UvIndex { get { return _uvIndex; } set { _uvIndex = value; } }
+        public List<int> MaterialIndex { get { return _materialIndex; } set { _materialIndex = value; } }
 
         public MeshPropertyType()
         {
@@ -29,6 +31,7 @@ namespace ModelAnimationPipeline
             _edges = new List<int>();
             _uvs = new List<Vector2>();
             _uvIndex = new List<int>();
+            _materialIndex = new List<int>();
         }
 
         public Type GetType()
@@ -90,5 +93,33 @@ namespace ModelAnimationPipeline
         public LimbNodeJointType() { _translation = Vector3.Zero; _rotation = Vector3.Zero; _scale = Vector3.Zero; }
 
         public Type GetType() { return typeof(LimbNodeJointType); }
+    }
+
+    public class MaterialLambertPropertyType : IObjectPropertyType
+    {
+        public MaterialLambertPropertyType() { }
+
+        public Type GetType() { return typeof(MaterialLambertPropertyType); }
+    }
+
+    public class MaterialBlinnPropertyType : IObjectPropertyType
+    {
+        private Vector3 _specColour;
+        private Vector3 _specular;
+        private double _shininessExp;
+        private double _shininess;
+        private double _reflectionFactor;
+        private double _reflectivity;
+
+        public Vector3 SpecularColour { get { return _specColour; } set { _specColour = value; } }
+        public Vector3 Specular { get { return _specular; } set { _specular = value; } }
+        public double Shininess { get { return _shininess; } set { _shininess = value; } }
+        public double ShininessExponent { get { return _shininessExp; } set { _shininessExp = value; } }
+        public double ReflectionFactor { get { return _reflectionFactor; } set { _reflectionFactor = value; } }
+        public double Reflectivity { get { return _reflectivity; } set { _reflectivity = value; } }
+
+        public MaterialBlinnPropertyType() { }
+
+        public Type GetType() { return typeof(MaterialBlinnPropertyType); }
     }
 }

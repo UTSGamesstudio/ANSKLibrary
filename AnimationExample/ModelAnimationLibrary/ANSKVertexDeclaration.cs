@@ -13,7 +13,7 @@ namespace ModelAnimationLibrary
     {
         //[FieldOffset(0)]
         public Vector3 Position;
-        //public Vector4 Color;
+        public Vector4 Colour;
         //[FieldOffset(12)]
         public Vector2 Uv;
         //[FieldOffset(20)]
@@ -24,12 +24,13 @@ namespace ModelAnimationLibrary
 
         //public static readonly VertexDeclaration VertexDeclaration;
 
-        public static readonly int SizeInBytes = (sizeof(float) * (3 + 2 + 3 + 4)) + (sizeof(int) * 5);
+        public static readonly int SizeInBytes = (sizeof(float) * (3 + 4 + 2 + 3 + 4)) + (sizeof(int) * 5);
         //public static readonly int SizeInBytes = (sizeof(float) * (3 + 4));
 
-        public ANSKVertexDeclaration(Vector3 pos, Vector2 uv, Vector3 normal, int4 indices, float4 weights, int boneCount)
+        public ANSKVertexDeclaration(Vector3 pos, Vector4 colour, Vector2 uv, Vector3 normal, int4 indices, float4 weights, int boneCount)
         {
             Position = pos;
+            Colour = colour;
             Uv = uv;
             Normal = normal;
             Indices = indices;
@@ -59,12 +60,12 @@ namespace ModelAnimationLibrary
             new VertexElement[]
             {
             new VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position,0),
-            //new VertexElement(sizeof(float) * 3, VertexElementFormat.Vector4, VertexElementUsage.Color, 0)
-            new VertexElement(sizeof(float) * 3, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 0),
-                new VertexElement(sizeof(float) * 5, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
-                new VertexElement(sizeof(float) * 8, VertexElementFormat.Short4, VertexElementUsage.BlendIndices, 0),
-                new VertexElement(sizeof(float) * 8 + sizeof(int) * 4, VertexElementFormat.Vector4, VertexElementUsage.BlendWeight, 0),
-                new VertexElement(sizeof(float) * 12 + sizeof(int) * 4, VertexElementFormat.Single, VertexElementUsage.BlendIndices, 1)
+            new VertexElement(sizeof(float) * 3, VertexElementFormat.Vector4, VertexElementUsage.Color, 0),
+            new VertexElement(sizeof(float) * 7, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 0),
+            new VertexElement(sizeof(float) * 9, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
+            new VertexElement(sizeof(float) * 12, VertexElementFormat.Short4, VertexElementUsage.BlendIndices, 0),
+            new VertexElement(sizeof(float) * 12 + sizeof(int) * 4, VertexElementFormat.Vector4, VertexElementUsage.BlendWeight, 0),
+            new VertexElement(sizeof(float) * 16 + sizeof(int) * 4, VertexElementFormat.Single, VertexElementUsage.BlendIndices, 1)
             }
         );
 

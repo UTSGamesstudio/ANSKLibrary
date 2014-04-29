@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatableModel.cs" />
+    <Compile Include="ANSKModelContainer.cs" />
     <Compile Include="ANSKTest.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="DrawableMovableComponent.cs" />
