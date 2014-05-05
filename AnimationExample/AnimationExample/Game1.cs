@@ -60,14 +60,14 @@ namespace AnimationExample
             //_camera.Target = _test;
             _camera.TargetSpecified = true;
 
-            //_model = new ANSKModel(Content.Load<ANSKModelContent>("alienLarva_v21"));
-            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
+            _model = new ANSKModel(Content.Load<ANSKModelContent>("alienLarva_v21"));
+            //_model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
             _model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("Effects/AnimatableModel"), this);
             _model.CenterModelToOrigin();
             _modelCont = new ANSKModelContainer(_model, this, Vector3.Zero);
             //_modelCont.Translate(0, 0, 2.6f);
-            //_model.PlayAnimation("walk");
-            _model.PlayAnimation("One");
+            _model.PlayAnimation("walk");
+            //_model.PlayAnimation("One");
             //_camera.Translate(Vector3.Left * 15);
             //_camera.Translate(Vector3.Forward * 15);
 

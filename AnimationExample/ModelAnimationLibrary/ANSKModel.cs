@@ -212,7 +212,7 @@ namespace ModelAnimationLibrary
             _effect.Parameters["psArrayIndex"].SetValue(1);
             _effect.Parameters["ambientIntensity"].SetValue(1f);
             _effect.Parameters["world"].SetValue(transform);
-            _effect.Parameters["diffuseColour"].SetValue(_materials[1].DiffuseColour.ToVector4());
+            _effect.Parameters["diffuseColour"].SetValue(_materials[0].DiffuseColour.ToVector4());
             _effect.Parameters["diffuseFactor"].SetValue((float)_materials[0].DiffuseFactor);
             //_effect.Parameters["diffuseLight"].SetValue(_materials[0].DiffuseLight);
             _effect.Parameters["diffuseLight"].SetValue(Vector3.Forward);

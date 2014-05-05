@@ -74,6 +74,7 @@
       <Name>alienLarva_v21</Name>
       <Importer>ModelAnimationImporterFbx</Importer>
       <Processor>ModelAnimationProcessor</Processor>
+      <ProcessorParameters_AnalyseBlendShapes>All</ProcessorParameters_AnalyseBlendShapes>
     </Compile>
   </ItemGroup>
   <ItemGroup>
