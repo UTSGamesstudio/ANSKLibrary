@@ -1,0 +1,11 @@
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\obj\Debug\ANSKLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\ANSKLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\ANSKLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\Microsoft.Xna.Framework.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\Microsoft.Xna.Framework.xml
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\obj\Debug\ANSKLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGame\ANSKLibrary\obj\Debug\ANSKLibrary.pdb
