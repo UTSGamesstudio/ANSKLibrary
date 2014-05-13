@@ -113,6 +113,9 @@
     <Compile Include="LambertMaterial.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MaterialContent.cs" />
+    <Compile Include="MeshContent.cs" />
+    <Compile Include="MeshManager.cs" />
+    <Compile Include="MeshPart.cs" />
     <Compile Include="ShaderVars\float4.cs" />
     <Compile Include="ShaderVars\int4.cs" />
     <Compile Include="Joint.cs" />

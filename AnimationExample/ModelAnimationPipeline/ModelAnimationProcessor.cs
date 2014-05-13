@@ -120,7 +120,18 @@ namespace ModelAnimationPipeline
 
             matContent = new ModelAnimationLibrary.MaterialContent(mats, xnaMatIndList);
 
-            return new ANSKModelContent(verts, vertIndex, uvs, uvIndex, edges, normals, skele, skin, bShapes, matContent);
+            return new ANSKModelContent(verts, RemakeIndices(vertIndex), uvs, uvIndex, edges, normals, skele, skin, bShapes, matContent);
+        }
+
+        private List<short> RemakeIndices(List<int> inds)
+        {
+            List<short> ind = new List<short>();
+            for (int i = 0; i < inds.Count; i++)
+            {
+                ind.Add(Convert.ToInt16(inds[i]));
+            }
+
+            return ind;
         }
 
         [DisplayName("ANSK Blend Shape Import")]
@@ -132,6 +143,8 @@ namespace ModelAnimationPipeline
     /// <summary>
     /// Custom processor extends the builtin framework ModelProcessor class,
     /// adding animation support.
+    /// This section is from the Microsoft website from the code example 'SkinningExample'
+    /// http://xbox.create.msdn.com/en-US/education/catalog/sample/skinned_model
     /// </summary>
     //[ContentProcessor]
     public class ModelAnimationProcessorProcess : ContentProcessor<NodeContent, SkinningData>
@@ -368,7 +381,7 @@ namespace ModelAnimationPipeline
         static void ValidateMesh(NodeContent node, ContentProcessorContext context,
                                  string parentBoneName)
         {
-            MeshContent mesh = node as MeshContent;
+            Microsoft.Xna.Framework.Content.Pipeline.Graphics.MeshContent mesh = node as Microsoft.Xna.Framework.Content.Pipeline.Graphics.MeshContent;
 
             if (mesh != null)
             {
@@ -407,7 +420,7 @@ namespace ModelAnimationPipeline
         /// <summary>
         /// Checks whether a mesh contains skininng information.
         /// </summary>
-        static bool MeshHasSkinning(MeshContent mesh)
+        static bool MeshHasSkinning(Microsoft.Xna.Framework.Content.Pipeline.Graphics.MeshContent mesh)
         {
             foreach (GeometryContent geometry in mesh.Geometry)
             {

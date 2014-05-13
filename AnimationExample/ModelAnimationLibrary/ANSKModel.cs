@@ -19,12 +19,18 @@ namespace ModelAnimationLibrary
         private SkinningData _skin;
         private AnimationPlayer _player;
         private AnimationClip _currentClip;
+
+        // Only keep these here to show the model for examples.
+        // Will be replaced with MeshManager.
         private List<Vector3> _verts;
         private List<short> _indicies;
         private List<Vector2> _uvs;
         private List<int> _uvIndicies;
         private List<int> _edges;
         private List<Vector3> _normals;
+        private List<Material> _materials;
+        private List<int> _materialIndices;
+
         private Skeleton _skeleton;
         private List<Joint> _joints;
         private Effect _effect;
@@ -33,29 +39,39 @@ namespace ModelAnimationLibrary
         private IndexBuffer _indBuffer;
         private GraphicsDevice _gDevice;
         private Game _game;
-        private List<Material> _materials;
-        private List<int> _materialIndices;
 
+        // This class is unfinished, so code has been rolled back to the original render code so this example can actually work.
+        // Code marked with 'RollForward' is new code that been commented out so the old code could be used.
+        private MeshManager _mesh;
+
+        // RollForward
+        //public List<Vector3> Verticies { get { return _mesh.Vertices; } set { _mesh.Vertices = value; CreateDeclarationList(); } }
+        //public List<short> Indices { get { return _mesh.Indices; } }
         public List<Vector3> Verticies { get { return _verts; } set { _verts = value; CreateDeclarationList(); } }
         public List<short> Indices { get { return _indicies; } }
 
         public AnimationPlayer Player { get { return _player; } }
         public AnimationClip AnimationClip { get { return _currentClip; } set { _currentClip = value; } }
         public AAC AAC { get { return _aac; } }
+        public MeshManager MeshManager { get { return _mesh; } set { _mesh = value; } }
 
         public ANSKModel(ANSKModelContent content)
         {            
-            _verts = content.Verticies;
-            RemakeIndices(content.VertexIndicies);
-            _uvs = content.Uvs;
-            _uvIndicies = content.UvIndicies;
-            _edges = content.Edges;
-            _normals = content.Normals;
+            _verts = content.Mesh.Verticies;
+            _indicies = content.Mesh.VertexIndicies;
+            _uvs = content.Mesh.Uvs;
+            _uvIndicies = content.Mesh.UvIndicies;
+            _edges = content.Mesh.Edges;
+            _normals = content.Mesh.Normals;
+            _materials = content.Mesh.Materials.Materials;
+            _materialIndices = content.Mesh.Materials.MaterialIndicieList;
+             
             _skeleton = content.Joints;
             _joints = _skeleton.ToJointList();
             _skin = content.Skin;
-            _materials = content.Materials.Materials;
-            _materialIndices = content.Materials.MaterialIndicieList;
+
+            // RollForward
+            //_mesh = new MeshManager(content.Mesh, _joints);
 
             _skeleton.Init();
 
@@ -65,14 +81,6 @@ namespace ModelAnimationLibrary
             _aac.LoadBlendShapes(content.BlendShapes, this);
         }
 
-        private void RemakeIndices(List<int> inds)
-        {
-            _indicies = new List<short>();
-            for (int i = 0; i < inds.Count; i++)
-            {
-                _indicies.Add(Convert.ToInt16(inds[i]));
-            }
-        }
 
         public void PlayAnimation(string name)
         {
@@ -90,7 +98,10 @@ namespace ModelAnimationLibrary
 
             try
             {
+                // RollForward
+                //_vertBuffer = new VertexBuffer(_game.GraphicsDevice, typeof(ANSKVertexDeclaration), _mesh.Vertices.Count, BufferUsage.WriteOnly);
                 _vertBuffer = new VertexBuffer(_game.GraphicsDevice, typeof(ANSKVertexDeclaration), _verts.Count, BufferUsage.WriteOnly);
+                //_indBuffer = new IndexBuffer(_game.GraphicsDevice, IndexElementSize.SixteenBits, sizeof(short) * _mesh.IndiceArray.Count, BufferUsage.WriteOnly);
                 _indBuffer = new IndexBuffer(_game.GraphicsDevice, IndexElementSize.SixteenBits, sizeof(short) * _indicies.Count, BufferUsage.WriteOnly);
             }
             catch (Exception e)
@@ -100,6 +111,8 @@ namespace ModelAnimationLibrary
 
             _player = new AnimationPlayer(_skin);
 
+            // RollForward
+            //_indBuffer.SetData<short>(_mesh.IndiceArray);
             _indBuffer.SetData<short>(_indicies.ToArray());
             //_gDevice.Indices = _indBuffer;
             _game.GraphicsDevice.Indices = _indBuffer;
@@ -108,6 +121,8 @@ namespace ModelAnimationLibrary
 
         public void CreateDeclarationList()
         {
+            // RollForward 
+            // Delete this for loop
             for (int i = 0; i < _verts.Count; i++)
             {
                 int4 ints = VertexToJointIndices(i);
@@ -116,13 +131,21 @@ namespace ModelAnimationLibrary
                 _verticies[i] = new ANSKVertexDeclaration(_verts[i], _materials[_materialIndices[i]].DiffuseColour.ToVector4(), _uvs[i], _normals[i], ints, weights, ints.Count);
             }
 
+            // RollForward
+            //_mesh.Refresh();
+
             _game.GraphicsDevice.SetVertexBuffer(null);
 
-            _vertBuffer.SetData<ANSKVertexDeclaration>(_verticies.ToArray<ANSKVertexDeclaration>());
+            // RollForward
+            //_vertBuffer.SetData<ANSKVertexDeclaration>(_mesh.VertexDeclarationArray);
+            _vertBuffer.SetData<ANSKVertexDeclaration>(_verticies);
 
             _game.GraphicsDevice.SetVertexBuffer(_vertBuffer);
         }
 
+        // RollForward
+        // Delete everything in this region.
+        #region OnlyInUseForExample
         private int4 VertexToJointIndices(int vertIndex)
         {
             int4 ints = new int4();
@@ -150,20 +173,11 @@ namespace ModelAnimationLibrary
             return floats;
         }
 
-        private void SetGraphicsStatesFor3D()
-        {
-            //_gDevice.RasterizerState = Rasterizer3DNormal;
-            //_gDevice.BlendState = Blend3DNormal;
-            //_gDevice.DepthStencilState = DepthStencil3DNormal;
-            //_gDevice.SamplerStates[0] = Sampler3DNormal;
-            _game.GraphicsDevice.RasterizerState = Rasterizer3DNormal;
-            _game.GraphicsDevice.BlendState = Blend3DNormal;
-            _game.GraphicsDevice.DepthStencilState = DepthStencil3DNormal;
-            _game.GraphicsDevice.SamplerStates[0] = Sampler3DNormal;
-        }
-
         public void CenterModelToOrigin()
         {
+            // This works by getting a box around the mesh and getting the midpoint between the min and max corners.
+            // If the midpoint is not (0,0) then you subtract that midpoint on every point, as that will will make the midpoint of the box (0,0).
+
             Vector3 min = Vector3.Zero;
             Vector3 max = Vector3.Zero;
             Vector3 mid = Vector3.Zero;
@@ -186,6 +200,19 @@ namespace ModelAnimationLibrary
             }
 
             CreateDeclarationList();
+        }
+        #endregion
+
+        private void SetGraphicsStatesFor3D()
+        {
+            //_gDevice.RasterizerState = Rasterizer3DNormal;
+            //_gDevice.BlendState = Blend3DNormal;
+            //_gDevice.DepthStencilState = DepthStencil3DNormal;
+            //_gDevice.SamplerStates[0] = Sampler3DNormal;
+            _game.GraphicsDevice.RasterizerState = Rasterizer3DNormal;
+            _game.GraphicsDevice.BlendState = Blend3DNormal;
+            _game.GraphicsDevice.DepthStencilState = DepthStencil3DNormal;
+            _game.GraphicsDevice.SamplerStates[0] = Sampler3DNormal;
         }
 
         public void Update(GameTime gameTime, Matrix transform)
