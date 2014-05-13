@@ -10,6 +10,8 @@ namespace ModelAnimationLibrary
     public class Material
     {
         public enum Shader { Lambert = 0, Phong }
+        public const string NameBlinn = "blinn";
+        public const string NameLambert = "lambert";
 
         [ContentSerializer]
         public string Name { get; set; }

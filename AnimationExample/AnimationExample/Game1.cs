@@ -63,7 +63,8 @@ namespace AnimationExample
             //_model = new ANSKModel(Content.Load<ANSKModelContent>("alienLarva_v21"));
             _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
             _model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("Effects/AnimatableModel"), this);
-            _model.CenterModelToOrigin();
+            //model.CenterModelToOrigin();
+            _model.MeshManager.CenterModelToOrigin();
             _modelCont = new ANSKModelContainer(_model, this, Vector3.Zero);
             //_modelCont.Translate(0, 0, 2.6f);
             //_model.PlayAnimation("walk");

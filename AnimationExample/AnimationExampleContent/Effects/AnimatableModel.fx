@@ -30,7 +30,7 @@ struct VSBasicInput
 	float3 normal : NORMAL0;
 	int4   indices  : BLENDINDICES0;
     float4 weights  : BLENDWEIGHT0;
-	int boneCount : BLENDINDICES5;
+	int boneCount : BLENDINDICES0;
 };
 
 struct VSBasicOutput
@@ -50,10 +50,11 @@ void Skin(inout VSBasicInput vin)
     //for (int i = 0; i < vin.boneCount; i++)
 	for (int i = 0; i < 1; i++)
     {
-        skinning += bones[vin.indices[i]]; //* vin.weights[i];
+        skinning += bones[vin.indices[i]] * vin.weights[i];
     }
 
     vin.pos.xyz = mul(vin.pos, skinning);
+	vin.normal = mul(vin.normal, (float3x3)skinning);
 }
 
 VSBasicOutput VSBasic(VSBasicInput input)
@@ -114,6 +115,15 @@ float4 PSLambert(VSBasicOutput input) : COLOR0
 {
 	float4 norm = float4(input.normal, 1.0);
 	float4 diffuse = saturate(dot(-diffuseLight, normalize(norm)));
+
+	input.colour.rgb *= ambientIntensity + diffuseFactor * diffuseColour.rgb * diffuse;
+	return input.colour;
+}
+
+float4 PSBlinn(VSBasicOutput input) : COLOR0
+{
+	float4 norm = float4(input.normal, 1.0);
+	float4 diffuse = saturate(dot(-diffuseLight, normalize(norm)));
 	float4 reflect = normalize(2*diffuse*norm-float4(diffuseLight,1.0));
 	float4 specular = pow(saturate(dot(reflect, input.view)),15);
 
@@ -128,11 +138,11 @@ VertexShader VSArray[1]=
 
 PixelShader PSArray[2]=
 {
-	compile ps_2_0 PSBasic(),
 	compile ps_2_0 PSLambert(),
+	compile ps_2_0 PSBlinn(),
 };
 
-technique AnimatableModelTechnique
+technique ANSK
 {
 	/*pass Pass0
 	{

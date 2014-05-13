@@ -19,6 +19,8 @@ namespace ModelAnimationLibrary
         public ANSKVertexDeclaration[] VertexDeclarationArray { get { return _verts; } }
         public List<short> Indices { get { return _meshData.VertexIndicies; } set { _meshData.VertexIndicies = value; } }
         public short[] IndiceArray { get { return _indices; } }
+        public Effect MeshEffect { set { for (int i = 0; i < _meshParts.Count; i++) _meshParts[i].MeshEffect = value; } }
+        public GraphicsDevice MeshGraphicDevice { set { for (int i = 0; i < _meshParts.Count; i++) _meshParts[i].MeshGraphicsDevice = value; } }
 
         public MeshManager(MeshContent mesh, List<Joint> joints)
         {
@@ -31,7 +33,7 @@ namespace ModelAnimationLibrary
                 _meshParts.Add(new MeshPart(_meshData.Materials.Materials[i]));
             }
 
-            Refresh();
+            //Refresh();
         }
 
         private int4 VertexToJointIndices(int vertIndex)
@@ -67,15 +69,19 @@ namespace ModelAnimationLibrary
             {
                 _meshParts[i].Reset();
 
-                for (int q = 0; q < _meshData.Verticies.Count; q++)
+                //for (int q = 0; q < _meshData.Verticies.Count; q++)
+                for (int q = 0; q < _meshData.VertexIndicies.Count; q++)
                 {
                     if (_meshData.Materials.MaterialIndicieList[q] == i)
                     {
-                        int4 ints = VertexToJointIndices(q);
-                        _meshParts[_meshData.Materials.MaterialIndicieList[q]].AddVertex(_meshData.Verticies[q], _meshData.Uvs[_meshData.UvIndicies[q]], _meshData.Normals[q],
-                                                                                        ints, VertexToJointsWeights(q, ints), ints.Count, _meshData.VertexIndicies[q]);
+                        int4 ints = VertexToJointIndices(_meshData.VertexIndicies[q]);
+                        _meshParts[_meshData.Materials.MaterialIndicieList[q]].AddVertex(_meshData.Verticies[_meshData.VertexIndicies[q]], _meshData.Uvs[_meshData.UvIndicies[_meshData.VertexIndicies[q]]],
+                                                                                        _meshData.Normals[_meshData.VertexIndicies[q]], ints, VertexToJointsWeights(_meshData.VertexIndicies[q], ints), 
+                                                                                        ints.Count, _meshData.VertexIndicies[q]);
                     }
                 }
+
+                _meshParts[i].Finalise();
             }
 
             _indices = GetIndicieList();
@@ -129,6 +135,27 @@ namespace ModelAnimationLibrary
             }
 
             Refresh();
+        }
+
+        public void Draw(GameTime gameTime, Matrix transform, Matrix view, Matrix proj, Matrix[] bones)
+        {
+            Matrix worldProj = transform * view * proj;
+
+            for (int i = 0; i < _meshParts.Count; i++)
+            //for (int i = 0; i < 1; i++)
+            {
+                _meshParts[i].MeshEffect.CurrentTechnique = _meshParts[i].MeshEffect.Techniques["ANSK"];
+                _meshParts[i].MeshEffect.Parameters["worldProj"].SetValue(worldProj);
+                _meshParts[i].MeshEffect.Parameters["bones"].SetValue(bones);
+                _meshParts[i].MeshEffect.Parameters["ambientIntensity"].SetValue(1f);
+                _meshParts[i].MeshEffect.Parameters["world"].SetValue(transform);
+                _meshParts[i].MeshEffect.Parameters["diffuseColour"].SetValue(_meshParts[i].MeshMaterial.DiffuseColour.ToVector4());
+                _meshParts[i].MeshEffect.Parameters["diffuseFactor"].SetValue((float)_meshParts[i].MeshMaterial.DiffuseFactor);
+                //_effect.Parameters["diffuseLight"].SetValue(_materials[0].DiffuseLight);
+                _meshParts[i].MeshEffect.Parameters["diffuseLight"].SetValue(Vector3.Forward);
+
+                _meshParts[i].Draw(gameTime, bones);
+            }
         }
     }
 }
