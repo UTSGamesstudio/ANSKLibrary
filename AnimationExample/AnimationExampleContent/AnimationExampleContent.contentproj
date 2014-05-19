@@ -93,6 +93,27 @@
       <ProcessorParameters_AnalyseBlendShapes>All</ProcessorParameters_AnalyseBlendShapes>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Psyduck.png">
+      <Name>Psyduck</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CubeTestTri.fbx">
+      <Name>CubeTestTri</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CubeTestPolyFace.fbx">
+      <Name>CubeTestPolyFace</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

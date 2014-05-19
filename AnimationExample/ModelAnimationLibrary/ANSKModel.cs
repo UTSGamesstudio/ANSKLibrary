@@ -34,7 +34,7 @@ namespace ModelAnimationLibrary
         private Skeleton _skeleton;
         private List<Joint> _joints;
         private Effect _effect;
-        private ANSKVertexDeclaration[] _verticies;
+        private ANSKVertexDeclarationAnimatable[] _verticies;
         private VertexBuffer _vertBuffer;
         private IndexBuffer _indBuffer;
         private GraphicsDevice _gDevice;
@@ -44,7 +44,7 @@ namespace ModelAnimationLibrary
 
         // This class is unfinished, so code has been rolled back to the original render code so this example can actually work.
         // Code marked with 'RollForward' is new code that been commented out so the old code could be used.
-        private MeshManager _mesh;
+        private MeshRenderer _mesh;
 
         // RollForward
         public List<Vector3> Verticies { get { return _mesh.Vertices; } set { _mesh.Vertices = value; CreateDeclarationList(); } }
@@ -55,7 +55,7 @@ namespace ModelAnimationLibrary
         public AnimationPlayer Player { get { return _player; } }
         public AnimationClip AnimationClip { get { return _currentClip; } set { _currentClip = value; } }
         public AAC AAC { get { return _aac; } }
-        public MeshManager MeshManager { get { return _mesh; } set { _mesh = value; } }
+        public MeshRenderer MeshRenderer { get { return _mesh; } set { _mesh = value; } }
 
         public ANSKModel(ANSKModelContent content)
         {            
@@ -69,11 +69,13 @@ namespace ModelAnimationLibrary
             _materialIndices = content.Mesh.Materials.MaterialIndicieList;*/
              
             _skeleton = content.Joints;
-            _joints = _skeleton.ToJointList();
-            _skin = content.Skin;
+            if (_skeleton != null)
+                _joints = _skeleton.ToJointList();
+            if (content.Skin != null)
+                _skin = content.Skin;
 
             // RollForward
-            _mesh = new MeshManager(content.Mesh, _joints);
+            _mesh = new MeshRenderer(content.Mesh, _joints);
 
             _skeleton.Init();
 
@@ -86,9 +88,12 @@ namespace ModelAnimationLibrary
 
         public void PlayAnimation(string name)
         {
-            _currentClip = _skin.AnimationClips[name];
+            if (_skin != null)
+            {
+                _currentClip = _skin.AnimationClips[name];
 
-            _player.StartClip(_currentClip);
+                _player.StartClip(_currentClip);
+            }
         }
 
         public void ManualInitialise(GraphicsDevice device, Effect effect, Game game)
@@ -114,7 +119,9 @@ namespace ModelAnimationLibrary
                 throw new Exception("Error declaring vertex and index buffers.", e);
             }
             */
-            _player = new AnimationPlayer(_skin);
+
+            if (_skin != null)
+                _player = new AnimationPlayer(_skin);
 
             // RollForward
             //_indBuffer.SetData<short>(_mesh.IndiceArray);
@@ -223,15 +230,20 @@ namespace ModelAnimationLibrary
         public void Update(GameTime gameTime, Matrix transform)
         {
             _aac.Update(gameTime);
-            _player.Update(gameTime.ElapsedGameTime, true, transform);
+            if (_player != null)
+                _player.Update(gameTime.ElapsedGameTime, true, transform);
         }
 
         public void Draw(GameTime gameTime, Matrix transform, Matrix view, Matrix proj)
         {
-            Matrix[] bones = _player.GetSkinTransforms();
-            Matrix[] transforms = new Matrix[_skin.SkeletonHierarchy.Count];
-
-            transforms = _skeleton.CollectAbsoluteBoneTransforms();
+            Matrix[] bones = null;
+            if (_player != null)
+            {
+                bones = _player.GetSkinTransforms();
+                Matrix[] transforms = new Matrix[_skin.SkeletonHierarchy.Count];
+                if (_skeleton != null)
+                    transforms = _skeleton.CollectAbsoluteBoneTransforms();
+            }
 
             SetGraphicsStatesFor3D();
 
@@ -275,6 +287,7 @@ namespace ModelAnimationLibrary
             }*/
 
             SetGraphicsStatesFor3D();
+
             _mesh.Draw(gameTime, transform, view, proj, bones);
 
             /*_testEffect.World = transform;

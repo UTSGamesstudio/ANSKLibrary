@@ -21,8 +21,11 @@ namespace ModelAnimationLibrary
 
         public void LoadBlendShapes(List<BlendShapeContent> shapes, ANSKModel model)
         {
-            if (shapes != null || shapes.Count != 0)
-                _bManager = new BlendShapeManager(shapes, model);
+            if (shapes != null)
+            {
+                if (shapes.Count != 0)
+                    _bManager = new BlendShapeManager(shapes, model);
+            }
         }
 
         public void Update(GameTime g)

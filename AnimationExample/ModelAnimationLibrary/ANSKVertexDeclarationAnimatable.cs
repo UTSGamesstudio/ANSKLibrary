@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace ModelAnimationLibrary
 {
     //[StructLayout(LayoutKind.Explicit, Pack = 64)] 
-    public struct ANSKVertexDeclaration : IVertexType
+    public struct ANSKVertexDeclarationAnimatable : IVertexType
     {
         //[FieldOffset(0)]
         public Vector3 Position;
@@ -27,7 +27,7 @@ namespace ModelAnimationLibrary
         public static readonly int SizeInBytes = (sizeof(float) * (3 + 4 + 2 + 3 + 4)) + (sizeof(int) * 5);
         //public static readonly int SizeInBytes = (sizeof(float) * (3 + 4));
 
-        public ANSKVertexDeclaration(Vector3 pos, Vector4 colour, Vector2 uv, Vector3 normal, int4 indices, float4 weights, int boneCount)
+        public ANSKVertexDeclarationAnimatable(Vector3 pos, Vector4 colour, Vector2 uv, Vector3 normal, int4 indices, float4 weights, int boneCount)
         {
             Position = pos;
             Colour = colour;

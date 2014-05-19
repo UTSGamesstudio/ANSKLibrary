@@ -61,10 +61,12 @@ namespace AnimationExample
             _camera.TargetSpecified = true;
 
             //_model = new ANSKModel(Content.Load<ANSKModelContent>("alienLarva_v21"));
-            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
+            //_model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
+            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTestPolyFace"));
             _model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("Effects/AnimatableModel"), this);
             //model.CenterModelToOrigin();
-            _model.MeshManager.CenterModelToOrigin();
+            _model.MeshRenderer.CenterModelToOrigin();
+            _model.MeshRenderer.SetTexture(Content.Load<Texture2D>("Psyduck"), "lambert1");
             _modelCont = new ANSKModelContainer(_model, this, Vector3.Zero);
             //_modelCont.Translate(0, 0, 2.6f);
             //_model.PlayAnimation("walk");

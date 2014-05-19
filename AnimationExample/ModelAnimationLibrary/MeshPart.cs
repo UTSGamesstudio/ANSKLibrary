@@ -12,7 +12,8 @@ namespace ModelAnimationLibrary
         public const int PIXELSHADERLAMBERT = 0;
         public const int PIXELSHADERBLINN = 1;
 
-        private List<ANSKVertexDeclaration> _vertDecs;
+        private List<ANSKVertexDeclarationAnimatable> _vertDecsAnim;
+        private List<ANSKVertexDeclarationModel> _vertDecsModel;
         private Material _material;
         private List<short> _indices;
         private Effect _effect;
@@ -20,37 +21,49 @@ namespace ModelAnimationLibrary
         private IndexBuffer _indBuffer;
         private GraphicsDevice _graphics;
         private bool _usable;
+        private Texture2D _texture;
+        public MeshRenderer.ModelRenderType _renderType;
 
         public Effect MeshEffect { get { return _effect; } set { _effect = value; } }
         public Material MeshMaterial { get { return _material; } }
         public GraphicsDevice MeshGraphicsDevice { get { return _graphics; } set { _graphics = value; } }
+        public Texture2D Texture { get { return _texture; } set { _texture = value; } }
 
         public MeshPart(Material material)
         {
-            _vertDecs = new List<ANSKVertexDeclaration>();
+            _vertDecsAnim = new List<ANSKVertexDeclarationAnimatable>();
+            _vertDecsModel = new List<ANSKVertexDeclarationModel>();
             _indices = new List<short>();
             _material = material;
             _usable = false;
+            _texture = null;
         }
 
         public void AddVertex(Vector3 vertex, Vector2 uv, Vector3 normal, int4 indices, float4 weights, int boneCount, short indice)
         {
             _usable = true;
-            try
-            {
-                _vertDecs.Add(new ANSKVertexDeclaration(vertex, _material.DiffuseColour.ToVector4(), uv, normal, indices, weights, boneCount));
-            }
-            catch (Exception e)
-            {
 
-            }
+            _vertDecsAnim.Add(new ANSKVertexDeclarationAnimatable(vertex, _material.DiffuseColour.ToVector4(), uv, normal, indices, weights, boneCount));
             _indices.Add(indice);
+
+            _renderType = MeshRenderer.ModelRenderType.Animatable;
+        }
+
+        public void AddVertex(Vector3 vertex, Vector2 uv, Vector3 normal, short indice)
+        {
+            _usable = true;
+
+            _vertDecsModel.Add(new ANSKVertexDeclarationModel(vertex, _material.DiffuseColour.ToVector4(), uv, normal));
+            
+            _indices.Add(indice);
+
+            _renderType = MeshRenderer.ModelRenderType.Normal;
         }
 
         public void Reset()
         {
             _usable = false;
-            _vertDecs.Clear();
+            _vertDecsAnim.Clear();
             _indices.Clear();
         }
 
@@ -58,9 +71,21 @@ namespace ModelAnimationLibrary
         {
             if (_usable)
             {
-                _vertBuffer = new VertexBuffer(_graphics, typeof(ANSKVertexDeclaration), _vertDecs.Count, BufferUsage.None);
+                switch (_renderType)
+                {
+                    case MeshRenderer.ModelRenderType.Normal:
+                        _vertBuffer = new VertexBuffer(_graphics, typeof(ANSKVertexDeclarationModel), _vertDecsModel.Count, BufferUsage.None);
+                        _vertBuffer.SetData<ANSKVertexDeclarationModel>(_vertDecsModel.ToArray());
+                        break;
+
+                    case MeshRenderer.ModelRenderType.Animatable:
+                        _vertBuffer = new VertexBuffer(_graphics, typeof(ANSKVertexDeclarationAnimatable), _vertDecsAnim.Count, BufferUsage.None);
+                        _vertBuffer.SetData<ANSKVertexDeclarationAnimatable>(_vertDecsAnim.ToArray());
+                        break;
+                }
+
+                
                 _indBuffer = new IndexBuffer(_graphics, typeof(short), _indices.Count, BufferUsage.None);
-                _vertBuffer.SetData<ANSKVertexDeclaration>(_vertDecs.ToArray());
                 _indBuffer.SetData<short>(_indices.ToArray());
             }
         }
@@ -70,9 +95,14 @@ namespace ModelAnimationLibrary
             return _indices;
         }
 
-        public List<ANSKVertexDeclaration> CollectVertices()
+        public List<ANSKVertexDeclarationAnimatable> CollectAnimVertices()
         {
-            return _vertDecs;
+            return _vertDecsAnim;
+        }
+
+        public List<ANSKVertexDeclarationModel> CollectModelVertices()
+        {
+            return _vertDecsModel;
         }
 
         public void Draw(GameTime gameTime, Matrix[] bones)
@@ -88,20 +118,33 @@ namespace ModelAnimationLibrary
                 _effect.Parameters["psArrayIndex"].SetValue(PIXELSHADERBLINN);
             }
 
+            if (_texture != null)
+            {
+                _effect.Parameters["usingTexture"].SetValue(true);
+                _effect.Parameters["modelTexture"].SetValue(_texture);
+            }
+            else
+                _effect.Parameters["usingTexture"].SetValue(false);
+
             _effect.Parameters["vsArrayIndex"].SetValue(0);
+
+            if (_renderType == MeshRenderer.ModelRenderType.Animatable)
+                _effect.CurrentTechnique = _effect.Techniques["Anim"];
+            else
+                _effect.CurrentTechnique = _effect.Techniques["Normal"];
 
             _graphics.SetVertexBuffer(_vertBuffer);
             _graphics.Indices = _indBuffer;
 
-            for (int i = 0; i < _vertDecs.Count; i++)
+            for (int i = 0; i < _vertDecsAnim.Count; i++)
             {
-                DebugShapeRenderer.AddBoundingSphere(new BoundingSphere(Vector3.Transform(_vertDecs[i].Position, bones[_vertDecs[i].Indices[0]]), 0.1f), Color.White);
+                DebugShapeRenderer.AddBoundingSphere(new BoundingSphere(Vector3.Transform(_vertDecsAnim[i].Position, bones[_vertDecsAnim[i].Indices[0]]), 0.1f), Color.White);
             }
-            for (int i = 0; i < _vertDecs.Count; i+=3)
+            for (int i = 0; i < _vertDecsAnim.Count; i+=3)
             {
-                DebugShapeRenderer.AddTriangle(Vector3.Transform(_vertDecs[i].Position, bones[_vertDecs[i].Indices[0]]),
-                                                Vector3.Transform(_vertDecs[i + 1].Position, bones[_vertDecs[i + 1].Indices[0]]),
-                                                Vector3.Transform(_vertDecs[i + 2].Position, bones[_vertDecs[i + 2].Indices[0]]),
+                DebugShapeRenderer.AddTriangle(Vector3.Transform(_vertDecsAnim[i].Position, bones[_vertDecsAnim[i].Indices[0]]),
+                                                Vector3.Transform(_vertDecsAnim[i + 1].Position, bones[_vertDecsAnim[i + 1].Indices[0]]),
+                                                Vector3.Transform(_vertDecsAnim[i + 2].Position, bones[_vertDecsAnim[i + 2].Indices[0]]),
                                                 Color.White);
             }
 

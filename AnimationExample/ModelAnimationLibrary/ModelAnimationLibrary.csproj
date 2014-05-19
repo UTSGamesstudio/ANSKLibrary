@@ -102,7 +102,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ANSKModelContent.cs" />
-    <Compile Include="ANSKVertexDeclaration.cs" />
+    <Compile Include="ANSKVertexDeclarationAnimatable.cs" />
+    <Compile Include="ANSKVertexDeclarationModel.cs" />
     <Compile Include="BlendShape.cs" />
     <Compile Include="BlendShapeComplex.cs" />
     <Compile Include="BlendShapeContent.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Material.cs" />
     <Compile Include="MaterialContent.cs" />
     <Compile Include="MeshContent.cs" />
-    <Compile Include="MeshManager.cs" />
+    <Compile Include="MeshRenderer.cs" />
     <Compile Include="MeshPart.cs" />
     <Compile Include="ShaderVars\float4.cs" />
     <Compile Include="ShaderVars\int4.cs" />

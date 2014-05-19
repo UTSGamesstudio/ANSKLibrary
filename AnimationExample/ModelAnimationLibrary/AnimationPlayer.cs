@@ -60,9 +60,6 @@ namespace ModelAnimationLibrary
         /// </summary>
         public AnimationPlayer(SkinningData skinningData)
         {
-            if (skinningData == null)
-                throw new ArgumentNullException("skinningData");
-
             skinningDataValue = skinningData;
 
             boneTransforms = new Matrix[skinningData.BindPose.Count];

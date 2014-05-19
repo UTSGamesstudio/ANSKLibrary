@@ -50,13 +50,31 @@
       <Time>2014-04-25T14:54:22.5030375+10:00</Time>
     </Item>
     <Item>
+      <Source>CubeTestTri.fbx</Source>
+      <Name>CubeTestTri</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTestTri.xnb</Output>
+      <Time>2014-05-14T11:52:03.8376605+10:00</Time>
+    </Item>
+    <Item>
+      <Source>CubeTestPolyFace.fbx</Source>
+      <Name>CubeTestPolyFace</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTestPolyFace.xnb</Output>
+      <Time>2014-05-14T12:23:24.6092345+10:00</Time>
+    </Item>
+    <Item>
       <Source>Effects\AnimatableModel.fx</Source>
       <Name>Effects\AnimatableModel</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Effects\AnimatableModel.xnb</Output>
-      <Time>2014-05-13T18:55:26.8362409+10:00</Time>
+      <Time>2014-05-14T20:03:21.6386943+10:00</Time>
     </Item>
     <Item>
       <Source>Effects\PoopTest.fx</Source>
@@ -66,6 +84,15 @@
       <Options>None</Options>
       <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Effects\PoopTest.xnb</Output>
       <Time>2014-04-07T23:00:11.165924+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Psyduck.png</Source>
+      <Name>Psyduck</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Psyduck.xnb</Output>
+      <Time>2014-04-13T16:21:41.8083619+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -81,7 +108,7 @@
     <Assemblies>
       <Assembly>
         <Key>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll</Key>
-        <Value>2014-05-13T19:18:07.929091+10:00</Value>
+        <Value>2014-05-14T20:03:37.7386151+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>

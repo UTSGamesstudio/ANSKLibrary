@@ -86,6 +86,9 @@ namespace ModelAnimationPipeline
                     }
 
                     int matCount = 0;
+                    int faceVertCount = 0;
+                    int firstPointOfTri = 0;
+                    int numFaces = 0;
 
                     // Need to fix the indicies as the .fbx file XOR's a -1 to the indicie that ends a polygon face.
                     // Also the indice list is structured in a triangle fan sectioned list (A combination of triangle fans).
@@ -94,23 +97,54 @@ namespace ModelAnimationPipeline
                     // TODO - This needs to remade to work on any polygonal face, rather than a 4 vertex face.
                     for (int q = 0; q < vertIndex.Count; q++)
                     {
-                        if (vertIndex[q] < 0)
+                        if (vertIndex[q] < 0 || faceVertCount >= 3)
                         {
+                            if (faceVertCount == 2) // if it's a simple triangle shape
+                            {
+                                xnaIndList.Add((vertIndex[q] * -1) - 1);
+                                xnaMatIndList.Add(materials[matCount]);
+                            }
+                            else
+                            {
+                                bool quit = false;
+                                int count = 0;
+                                for (int w = 0; quit == false; w++, count++)
+                                {
+                                    xnaIndList.Add(vertIndex[firstPointOfTri]);
+                                    xnaMatIndList.Add(materials[matCount]);
+                                    xnaIndList.Add(vertIndex[q + w - 1]);
+                                    xnaMatIndList.Add(materials[matCount]);
+                                    if (vertIndex[q + w] < 0)
+                                    {
+                                        xnaIndList.Add((vertIndex[q + w] * -1) - 1);
+                                        xnaMatIndList.Add(materials[matCount]);
+                                        quit = true;
+                                    }
+                                    else
+                                    {
+                                        xnaIndList.Add(vertIndex[q + w]);
+                                        xnaMatIndList.Add(materials[matCount]);
+                                    }
+                                }
+
+                                q = q + count - 1;
+                            }
+
+                            faceVertCount = 0;
+
                             // We can do this as the fbx file will only have this XOR'd section
                             // at the end of a face with 3 vertices or more.
-                            xnaIndList.Add(vertIndex[q - 3]);
-                            xnaMatIndList.Add(materials[matCount]);
-                            xnaIndList.Add(vertIndex[q - 1]);
-                            xnaMatIndList.Add(materials[matCount]);
-                            xnaIndList.Add((vertIndex[q] * -1) - 1);
-                            xnaMatIndList.Add(materials[matCount]);
                             if (materials.Count != 1)
                                 matCount++;
+
+                            firstPointOfTri = q + 1;
+                            numFaces++;
                         }
                         else
                         {
                             xnaIndList.Add(vertIndex[q]);
                             xnaMatIndList.Add(materials[matCount]);
+                            faceVertCount++;
                         }
                     }
 
@@ -163,6 +197,17 @@ namespace ModelAnimationPipeline
             fName = fName.TrimEnd('b', 'n', 'x', '.');
             //fName = "/Models/" + fName + "Anims.txt";
             fName = fName + "Anims.txt";
+
+            StreamReader testFile = null;
+
+            try
+            {
+                testFile = new StreamReader(fName);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
 
             //ValidateMesh(input, context, null);
 

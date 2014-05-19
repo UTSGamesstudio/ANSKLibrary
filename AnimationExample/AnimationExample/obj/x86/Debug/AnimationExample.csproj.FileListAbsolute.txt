@@ -22,3 +22,6 @@ C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\alienLarva_v21.xnb
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTest2.xnb
 C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTest3.xnb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Psyduck.xnb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTestTri.xnb
+C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\CubeTestPolyFace.xnb

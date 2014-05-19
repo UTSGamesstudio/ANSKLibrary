@@ -11,6 +11,7 @@ float3 diffuseLight;
 float4 specColour;
 float3 specPos;
 float4x4 world;
+bool usingTexture;
 
 texture modelTexture;
 sampler2D modelTextureSampler = sampler_state
@@ -39,7 +40,7 @@ struct VSBasicOutput
 	float4 colour : COLOR0;
 	float3 normal : TEXCOORD0;
 	float3 view : TEXCOORD1;
-	//float2 texCoor: TEXCOORD0;
+	float2 texCoor: TEXCOORD2;
 };
 
 void Skin(inout VSBasicInput vin)
@@ -57,7 +58,7 @@ void Skin(inout VSBasicInput vin)
 	vin.normal = mul(vin.normal, (float3x3)skinning);
 }
 
-VSBasicOutput VSBasic(VSBasicInput input)
+VSBasicOutput VSAnimBasic(VSBasicInput input)
 {
     VSBasicOutput output;
 
@@ -68,7 +69,21 @@ VSBasicOutput VSBasic(VSBasicInput input)
 	output.colour = input.colour;
 	output.view = normalize(float4(specPos, 1.0) - mul(input.pos, world));
 	//output.pos = input.pos;
-	//output.texCoor = input.texCoor;
+	output.texCoor = input.texCoor;
+
+    return output;
+}
+
+VSBasicOutput VSNormalBasic(VSBasicInput input)
+{
+    VSBasicOutput output;
+
+    output.pos = mul(input.pos, worldProj);
+	output.normal = normalize(mul(input.normal, world));
+	output.colour = input.colour;
+	output.view = normalize(float4(specPos, 1.0) - mul(input.pos, world));
+	//output.pos = input.pos;
+	output.texCoor = input.texCoor;
 
     return output;
 }
@@ -117,6 +132,10 @@ float4 PSLambert(VSBasicOutput input) : COLOR0
 	float4 diffuse = saturate(dot(-diffuseLight, normalize(norm)));
 
 	input.colour.rgb *= ambientIntensity + diffuseFactor * diffuseColour.rgb * diffuse;
+
+	if (usingTexture)
+		input.colour.rgb = lerp(input.colour, tex2D(modelTextureSampler, input.texCoor), 0.2f);
+
 	return input.colour;
 }
 
@@ -128,12 +147,21 @@ float4 PSBlinn(VSBasicOutput input) : COLOR0
 	float4 specular = pow(saturate(dot(reflect, input.view)),15);
 
 	input.colour.rgb *= ambientIntensity + diffuseFactor * diffuseColour.rgb * diffuse + specColour * specular;
+
+	if (usingTexture)
+		input.colour.rgb = lerp(input.colour, tex2D(modelTextureSampler, input.texCoor), 0.2f);
+
 	return input.colour;
 }
 
-VertexShader VSArray[1]=
+VertexShader VSNormalArray[1]=
 {
-	compile vs_2_0 VSBasic(),
+	compile vs_2_0 VSNormalBasic(),
+};
+
+VertexShader VSAnimArray[1]=
+{
+	compile vs_2_0 VSAnimBasic(),
 };
 
 PixelShader PSArray[2]=
@@ -142,30 +170,20 @@ PixelShader PSArray[2]=
 	compile ps_2_0 PSBlinn(),
 };
 
-technique ANSK
+technique Anim
 {
-	/*pass Pass0
-	{
-		VertexShader = compile vs_2_0 VSOutline();
-		PixelShader = compile ps_2_0 PSOutline();
-	}*/
-
     pass Pass1
     {
-        // TODO: set renderstates here.
-
-        VertexShader = VSArray[vsArrayIndex];
+        VertexShader = VSAnimArray[vsArrayIndex];
         PixelShader = PSArray[psArrayIndex];
-		//VertexShader = compile vs_2_0 VSBasic();
-        //PixelShader = compile ps_2_0 PSBasic();
     }
 }
 
-technique ANSKLambert
+technique Normal
 {
 	pass Pass1
 	{
-		VertexShader = VSArray[vsArrayIndex];
-		PixelShader = PSArray[psArrayIndex];
+		VertexShader = VSNormalArray[vsArrayIndex];
+		PixelShader = PSArray[vsArrayIndex];
 	}
 }

@@ -23,7 +23,8 @@ namespace ModelAnimationLibrary
 
         public void Init()
         {
-            _rootJoint.Init();
+            if (_rootJoint != null)
+                _rootJoint.Init();
         }
 
         public void AddJoint(Joint joint)
@@ -71,6 +72,8 @@ namespace ModelAnimationLibrary
 
         public List<Joint> ToJointList()
         {
+            if (_rootJoint == null) return null;
+
             List<Joint> joints = new List<Joint>();
             _rootJoint.RetrieveNodes(ref joints);
             return joints;
