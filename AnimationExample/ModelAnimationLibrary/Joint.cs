@@ -5,8 +5,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-//public enum JointRetrievalType { BindPose, InverseBindPose, SkeletonHierarchy }
-
 namespace ModelAnimationLibrary
 {
     public class Joint
@@ -25,7 +23,6 @@ namespace ModelAnimationLibrary
         private Matrix _scale;
         [ContentSerializer]
         private Matrix _transformation;
-        //[ContentSerializer]
         private Joint _parent;
         [ContentSerializer]
         private List<Joint> _children;
@@ -38,6 +35,10 @@ namespace ModelAnimationLibrary
         public int Id { get { return _id; } }
         public int ParentId { get { return _parentId; } }
         public bool IsRootJoint { get { return (_id == _parentId); } }
+        public Matrix Position { get { return _translation; } }
+        public Matrix Rotation { get { return _rotation; } }
+        public Matrix Scale { get { return _scale; } }
+        public Matrix Transformation { get { return _transformation; } }
 
         public Joint(string name, int id, int parentId, Vector3 translation, Vector3 rotation, Vector3 scale, List<int> indices, List<float> weights)
         {
@@ -142,6 +143,16 @@ namespace ModelAnimationLibrary
             }
 
             return num;
+        }
+
+        public void FreezeTransformations()
+        {
+            _translation = Matrix.Identity;
+            _rotation = Matrix.Identity;
+            _scale = Matrix.Identity;
+
+            foreach (Joint j in _children)
+                j.FreezeTransformations();
         }
     }
 }

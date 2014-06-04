@@ -45,41 +45,25 @@ namespace AnimationExample
             LocalPlayerRegistry.InitialisePlayer(PlayerIndex.One);
             // TODO: Add your initialization logic here
             _inputManager = new Input(this);
-            _inputManager.AddCommandToCheckKeyboard(Keys.W, Keys.A, Keys.S, Keys.D, Keys.Q, Keys.E);
+            _inputManager.AddCommandToCheckKeyboard(Keys.W, Keys.A, Keys.S, Keys.D, Keys.Q, Keys.E, Keys.Z, Keys.C);
             _inputs = _inputManager.RetrieveInputContainer;
 
-            //_test = new ANSKTest(this, Vector3.Zero, 3, Content.Load<ANSKModelContent>("CubeTest"));
-
-            //_test._model.PlayAnimation("One");
-            //_test._model.PauseAnimation();
-
-            //_camera = new Camera(this, Vector3.Backward * 15, Vector3.Forward, Vector3.Up);
             _camera = new Camera(this, Vector3.Backward * 20, Vector3.Forward, Vector3.Up);
             _camera.Target = new GameObject(this, Matrix.Identity.Translation);
-            //_camera.TargetPos = Matrix.Identity.Translation;
-            //_camera.Target = _test;
             _camera.TargetSpecified = true;
 
-            //_model = new ANSKModel(Content.Load<ANSKModelContent>("alienLarva_v21"));
-            //_model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
-            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTestPolyFace"));
+            _model = new ANSKModel(Content.Load<ANSKModelContent>("CubeTest3"));
             _model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("Effects/AnimatableModel"), this);
-            //model.CenterModelToOrigin();
             _model.MeshRenderer.CenterModelToOrigin();
-            _model.MeshRenderer.SetTexture(Content.Load<Texture2D>("Psyduck"), "lambert1");
+            _model.MeshRenderer.SetTexture(Content.Load<Texture2D>("Psyduck"));
             _modelCont = new ANSKModelContainer(_model, this, Vector3.Zero);
-            //_modelCont.Translate(0, 0, 2.6f);
-            //_model.PlayAnimation("walk");
             _model.PlayAnimation("One");
-            //_camera.Translate(Vector3.Left * 15);
-            //_camera.Translate(Vector3.Forward * 15);
 
-            //_model = Content.Load<ANSKModel>("CubeTest");
             world = Matrix.CreateTranslation(0, 0, 0);
             view = Matrix.CreateLookAt(new Vector3(0, 0, 3), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
             proj = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.01f, 100f);
 
-            _modelTrans = Matrix.CreateTranslation(Vector3.Zero);// *Matrix.CreateScale(50);
+            _modelTrans = Matrix.CreateTranslation(Vector3.Zero);
 
             base.Initialize();
         }
@@ -120,40 +104,26 @@ namespace AnimationExample
 
             _camera.Update(gameTime);
 
-            //_test.Update(gameTime);
-
             // Please use _inputs for checking inputs.
 
             if (_inputs[Keys.W])
-                //_modelTrans *= Matrix.CreateTranslation(0, 0, 0.5f);
                 _modelCont.Translate(0, 0, 0.5f);
             else if (_inputs[Keys.S])
-                //_modelTrans *= Matrix.CreateTranslation(0, 0, -0.5f);
                 _modelCont.Translate(0, 0, -0.5f);
             if (_inputs[Keys.A])
                 _modelCont.RotateY(MathHelper.ToRadians(2));
-            //_modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(2));
-            //_modelTrans *= Matrix.CreateTranslation(-0.5f, 0, 0f);
-            //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 0);
             else if (_inputs[Keys.D])
                 _modelCont.RotateY(MathHelper.ToRadians(-2));
-                //_modelTrans *= Matrix.CreateRotationY(MathHelper.ToRadians(-2));
-                //_modelTrans *= Matrix.CreateTranslation(0.5f, 0, 0.5f);
-                //_model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 1);
             if (_inputs.IsFirstPressed(Keys.E))
-                //_model.PlayAnimation("One");
                 _model.AAC.BlendShapesControl.ChangeBlendValue("InnerBlend", 1);
             else if (_inputs.IsFirstPressed(Keys.Q))
-                //_model.PlayAnimation("Two");
                 _model.AAC.BlendShapesControl.ChangeBlendValue("InnerBlend", 0);
 
-                //if (_inputs.IsFirstPressed(Keys.W))
-                //_test._model.PlayAnimation("One");
+            if (_inputs.IsFirstPressed(Keys.Z))
+                _model.PlayAnimation("One");
+            else if (_inputs.IsFirstPressed(Keys.C))
+                _model.PlayAnimation("Two");
 
-                //if (_inputs.IsFirstPressed(Keys.S))
-                //_test._model.PlayAnimation("Two");
-
-            //_model.Update(gameTime, _modelTrans);
             _modelCont.Update(gameTime);
 
             // TODO: Add your update logic here
@@ -169,11 +139,7 @@ namespace AnimationExample
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //_model.Draw(gameTime, Matrix.Identity, _camera.View, _camera.Projection, _modelTrans);
             _modelCont.Draw(gameTime, _camera);
-            //_model.Draw(gameTime, world, view, proj);
-            //_test.Draw(gameTime, _camera);
-            // TODO: Add your drawing code here
             DebugShapeRenderer.Draw(gameTime, _camera.View, _camera.Projection);
 
             base.Draw(gameTime);

@@ -635,7 +635,6 @@ namespace ModelAnimationPipeline
 
         private void AnalyseStandardObjectHeading(string line, out int id, out string name, out string type)
         {
-            int reverseInt;
             id = 0;
             name = "";
             type = "";
@@ -657,89 +656,9 @@ namespace ModelAnimationPipeline
 
             id = int.Parse(tempNum);
 
-            /*reverseInt = Int32.Parse(idText);
-
-            // Arithmetic to reverse a number.
-            int holder = reverseInt;
-
-            while (holder > 0)
-            {
-                int r = holder % 10;
-                id = id * 10 + r;
-                holder = holder / 10;
-            }*/
-
             name = firstPart[1].Split('"')[1];
 
             type = firstPart[2].Split('"')[1];
-
-            /*// Now we grab the ID integer associated with this geometry.
-            for (int i = index; i < line.Length; i++, index++)
-            {
-                if (line[i] != ',')
-                    tempIdString += line[i];
-                else
-                {
-                    if (!int.TryParse(tempIdString, out id))
-                        throw new Exception("Error parsing ID of geometry of an object." + line);
-                    break;
-                }
-            }
-
-            // Move the index forward to the next section. Marked by initial "
-            for (int i = index; i < line.Length; i++, index++)
-            {
-                if (line[i] == '"')
-                {
-                    index++;
-                    break;
-                }
-            }
-
-            // Now read in the name of the property.
-            for (int i = index; i < line.Length; i++, index++)
-            {
-                if (line[i] != '"')
-                    name += line[i];
-                else
-                {
-                    char[] toSplit = new char[1];
-                    toSplit[0] = ':';
-                    string[] split = name.Split(toSplit, StringSplitOptions.RemoveEmptyEntries);
-
-                    if (split.Length > 1)
-                        name = split[1];
-                    else
-                        name = "";
-
-                    break;
-                }
-            }
-
-            // Move the index forward to the next section. Marked by initial "
-            index++;
-            for (int i = index; i < line.Length; i++, index++)
-            {
-                if (line[i] == '"')
-                {
-                    index++;
-                    break;
-                }
-            }
-
-            // Now read the property type of the property.
-            for (int i = index; i < line.Length; i++, index++)
-            {
-                if (line[i] != '"')
-                    type += line[i];
-                else
-                {
-                    if (type.Length == 0)
-                        type = "";
-
-                    break;
-                }
-            }*/
         }
 
         private void AnalyseLimbNodeProperties(StreamReader reader, ref IObjectProperty data)
@@ -844,7 +763,6 @@ namespace ModelAnimationPipeline
             string[] split;
 
             split = line.Split(splitters, StringSplitOptions.RemoveEmptyEntries);
-            //split[1] = split[1][1].ToString();
 
             split = split[1].Split('*');
 

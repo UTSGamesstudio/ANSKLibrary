@@ -24,14 +24,12 @@ using TImport = ModelAnimationPipeline.ANSKProcessContent;
 namespace ModelAnimationPipeline
 {
     [ContentProcessor]
-    //public class ModelAnimationProcessor : ContentProcessor<TImport, ModelContent>
     public class ModelAnimationProcessor : ContentProcessor<TImport, ANSKModelContent>
     {
         public enum ANSKBlendShapeImportOptions { None, Keyworded, All }
 
         private ANSKBlendShapeImportOptions _scanBlendShapes;
 
-        //public override ModelContent Process(TImport input, ContentProcessorContext context)
         public override ANSKModelContent Process(TImport input, ContentProcessorContext context)
         {
             List<Vector3> verts = null;
@@ -44,7 +42,6 @@ namespace ModelAnimationPipeline
             ModelAnimationLibrary.MaterialContent matContent;
             //System.Diagnostics.Debugger.Launch();
 
-            //ModelProcessor p = new ModelProcessor();
             ModelAnimationProcessorProcess p = new ModelAnimationProcessorProcess();
 
             Skeleton skele = input.ANSKData.CollectSkeleton();
@@ -94,7 +91,6 @@ namespace ModelAnimationPipeline
                     // Also the indice list is structured in a triangle fan sectioned list (A combination of triangle fans).
                     // We need to remake the indice list as a triangle strip.
 
-                    // TODO - This needs to remade to work on any polygonal face, rather than a 4 vertex face.
                     for (int q = 0; q < vertIndex.Count; q++)
                     {
                         if (vertIndex[q] < 0 || faceVertCount >= 3)

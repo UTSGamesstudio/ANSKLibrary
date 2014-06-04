@@ -111,6 +111,7 @@
     <Compile Include="BlendShapeVert.cs" />
     <Compile Include="BlinnMaterial.cs" />
     <Compile Include="DebugShapeRenderer.cs" />
+    <Compile Include="Geometry.cs" />
     <Compile Include="LambertMaterial.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MaterialContent.cs" />

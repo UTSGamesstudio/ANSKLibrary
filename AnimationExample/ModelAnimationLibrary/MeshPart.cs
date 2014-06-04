@@ -107,6 +107,8 @@ namespace ModelAnimationLibrary
 
         public void Draw(GameTime gameTime, Matrix[] bones)
         {
+            ANSKVertexDeclarationAnimatable[] skinnedAnim = _vertDecsAnim.ToArray();
+
             if (!_usable) return;
 
             if (_material.Name.Contains(Material.NameLambert))
@@ -130,13 +132,25 @@ namespace ModelAnimationLibrary
 
             if (_renderType == MeshRenderer.ModelRenderType.Animatable)
                 _effect.CurrentTechnique = _effect.Techniques["Anim"];
+                //_effect.CurrentTechnique = _effect.Techniques["Normal"];
             else
                 _effect.CurrentTechnique = _effect.Techniques["Normal"];
+
+            /*if (_renderType == MeshRenderer.ModelRenderType.Animatable)
+            {
+                for (int i = 0; i < _vertDecsAnim.Count; i++)
+                {
+                    skinnedAnim[i].Position = Vector3.Transform(_vertDecsAnim[i].Position, bones[_vertDecsAnim[i].Indices[0]]);
+                }
+
+                _vertBuffer.SetData<ANSKVertexDeclarationAnimatable>(skinnedAnim);
+            }*/
+                
 
             _graphics.SetVertexBuffer(_vertBuffer);
             _graphics.Indices = _indBuffer;
 
-            for (int i = 0; i < _vertDecsAnim.Count; i++)
+            /*for (int i = 0; i < _vertDecsAnim.Count; i++)
             {
                 DebugShapeRenderer.AddBoundingSphere(new BoundingSphere(Vector3.Transform(_vertDecsAnim[i].Position, bones[_vertDecsAnim[i].Indices[0]]), 0.1f), Color.White);
             }
@@ -146,13 +160,12 @@ namespace ModelAnimationLibrary
                                                 Vector3.Transform(_vertDecsAnim[i + 1].Position, bones[_vertDecsAnim[i + 1].Indices[0]]),
                                                 Vector3.Transform(_vertDecsAnim[i + 2].Position, bones[_vertDecsAnim[i + 2].Indices[0]]),
                                                 Color.White);
-            }
+            }*/
 
             foreach (EffectPass pass in _effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
 
-                //_graphics.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _vertDecs.Count, 0, _indices.Count);
                 _graphics.DrawPrimitives(PrimitiveType.TriangleList, 0, _indices.Count);
             }
         }

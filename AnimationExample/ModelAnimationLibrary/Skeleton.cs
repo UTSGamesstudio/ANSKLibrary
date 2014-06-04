@@ -87,5 +87,10 @@ namespace ModelAnimationLibrary
 
             return transforms.ToArray<Matrix>();
         }
+
+        public void FreezeTransformations()
+        {
+            _rootJoint.FreezeTransformations();
+        }
     }
 }

@@ -94,7 +94,6 @@ namespace ModelAnimationLibrary
             {
                 _meshParts[i].Reset();
 
-                //for (int q = 0; q < _meshData.Verticies.Count; q++)
                 for (int q = 0; q < _meshData.VertexIndicies.Count; q++)
                 {
                     if (_meshData.Materials.MaterialIndicieList[q] == i)
@@ -187,10 +186,13 @@ namespace ModelAnimationLibrary
         {
             Matrix worldProj = transform * view * proj;
 
-            for (int i = 0; i < _meshParts.Count; i++)
-            //for (int i = 0; i < 1; i++)
+            for (int i = 0; i < bones.Length; i++)
             {
-                //_meshParts[i].MeshEffect.CurrentTechnique = _meshParts[i].MeshEffect.Techniques["ANSK"];
+                bones[i] = FixBoneMatrix(bones[i], _joints[i]);
+            }
+
+            for (int i = 0; i < _meshParts.Count; i++)
+            {
                 _meshParts[i].MeshEffect.Parameters["worldProj"].SetValue(worldProj);
                 if (bones != null)
                     _meshParts[i].MeshEffect.Parameters["bones"].SetValue(bones);
@@ -198,11 +200,16 @@ namespace ModelAnimationLibrary
                 _meshParts[i].MeshEffect.Parameters["world"].SetValue(transform);
                 _meshParts[i].MeshEffect.Parameters["diffuseColour"].SetValue(_meshParts[i].MeshMaterial.DiffuseColour.ToVector4());
                 _meshParts[i].MeshEffect.Parameters["diffuseFactor"].SetValue((float)_meshParts[i].MeshMaterial.DiffuseFactor);
-                //_effect.Parameters["diffuseLight"].SetValue(_materials[0].DiffuseLight);
                 _meshParts[i].MeshEffect.Parameters["diffuseLight"].SetValue(Vector3.Forward);
 
                 _meshParts[i].Draw(gameTime, bones);
             }
+        }
+
+        private Matrix FixBoneMatrix(Matrix bone, Joint joint)
+        {
+            bone = Matrix.Subtract(bone, joint.Transformation);
+            return bone;
         }
     }
 }

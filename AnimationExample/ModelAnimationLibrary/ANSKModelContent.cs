@@ -22,16 +22,9 @@ namespace ModelAnimationLibrary
         public ANSKModelContent(List<Vector3> verts, List<short> vertInd, List<Vector2> uv, List<int> uvInd, List<int> edges, List<Vector3> normals, Skeleton joints, SkinningData skin, List<BlendShapeContent> bShapes, MaterialContent materials)
         {
             Mesh = new MeshContent(verts, vertInd, uv, uvInd, edges, normals, materials);
-            //Verticies = verts;
-            //VertexIndicies = vertInd;
-            //Uvs = uv;
-            //UvIndicies = uvInd;
-            //Edges = edges;
-            //Normals = normals;
             Joints = joints;
             Skin = skin;
             BlendShapes = bShapes;
-            //Materials = materials;
         }
 
         private ANSKModelContent()
