@@ -105,7 +105,7 @@ namespace ModelAnimationLibrary
             return _vertDecsModel;
         }
 
-        public void Draw(GameTime gameTime, Matrix[] bones)
+        public void Draw(GameTime gameTime, Matrix[] bones, bool animatable)
         {
             ANSKVertexDeclarationAnimatable[] skinnedAnim = _vertDecsAnim.ToArray();
 
@@ -130,7 +130,8 @@ namespace ModelAnimationLibrary
 
             _effect.Parameters["vsArrayIndex"].SetValue(0);
 
-            if (_renderType == MeshRenderer.ModelRenderType.Animatable)
+            //if (_renderType == MeshRenderer.ModelRenderType.Animatable)
+            if (animatable)
                 _effect.CurrentTechnique = _effect.Techniques["Anim"];
                 //_effect.CurrentTechnique = _effect.Techniques["Normal"];
             else

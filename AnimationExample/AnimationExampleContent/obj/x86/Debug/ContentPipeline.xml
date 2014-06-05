@@ -74,7 +74,7 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\AnimationExample\bin\x86\Debug\Content\Effects\AnimatableModel.xnb</Output>
-      <Time>2014-06-04T13:08:01.9019272+10:00</Time>
+      <Time>2014-06-04T13:08:09.2223459+10:00</Time>
     </Item>
     <Item>
       <Source>Effects\PoopTest.fx</Source>
@@ -108,7 +108,7 @@
     <Assemblies>
       <Assembly>
         <Key>C:\Users\Joshua\Documents\ANSKLibrary\AnimationExample\ModelAnimationPipeline\bin\x86\Debug\ModelAnimationPipeline.dll</Key>
-        <Value>2014-06-04T13:07:09.5669338+10:00</Value>
+        <Value>2014-06-05T23:29:21.4958409+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>

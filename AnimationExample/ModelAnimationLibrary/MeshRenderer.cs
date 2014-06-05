@@ -182,7 +182,7 @@ namespace ModelAnimationLibrary
             Refresh();
         }
 
-        public void Draw(GameTime gameTime, Matrix transform, Matrix view, Matrix proj, Matrix[] bones)
+        public void Draw(GameTime gameTime, Matrix transform, Matrix view, Matrix proj, Matrix[] bones, bool animatable)
         {
             Matrix worldProj = transform * view * proj;
 
@@ -202,7 +202,7 @@ namespace ModelAnimationLibrary
                 _meshParts[i].MeshEffect.Parameters["diffuseFactor"].SetValue((float)_meshParts[i].MeshMaterial.DiffuseFactor);
                 _meshParts[i].MeshEffect.Parameters["diffuseLight"].SetValue(Vector3.Forward);
 
-                _meshParts[i].Draw(gameTime, bones);
+                _meshParts[i].Draw(gameTime, bones, animatable);
             }
         }
 

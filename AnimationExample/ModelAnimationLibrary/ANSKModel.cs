@@ -114,7 +114,7 @@ namespace ModelAnimationLibrary
         public void Update(GameTime gameTime, Matrix transform)
         {
             _aac.Update(gameTime);
-            if (_player != null)
+            if (_player != null && _currentClip != null)
                 _player.Update(gameTime.ElapsedGameTime, true, transform);
         }
 
@@ -137,7 +137,7 @@ namespace ModelAnimationLibrary
 
             SetGraphicsStatesFor3D();
 
-            _mesh.Draw(gameTime, transform, view, proj, bones);
+            _mesh.Draw(gameTime, transform, view, proj, bones, (_currentClip != null));
         }
     }
 }

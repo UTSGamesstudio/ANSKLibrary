@@ -45,7 +45,7 @@ namespace AnimationExample
             LocalPlayerRegistry.InitialisePlayer(PlayerIndex.One);
             // TODO: Add your initialization logic here
             _inputManager = new Input(this);
-            _inputManager.AddCommandToCheckKeyboard(Keys.W, Keys.A, Keys.S, Keys.D, Keys.Q, Keys.E, Keys.Z, Keys.C);
+            _inputManager.AddCommandToCheckKeyboard(Keys.W, Keys.A, Keys.S, Keys.D, Keys.Q, Keys.E, Keys.Z, Keys.C, Keys.D2, Keys.X);
             _inputs = _inputManager.RetrieveInputContainer;
 
             _camera = new Camera(this, Vector3.Backward * 20, Vector3.Forward, Vector3.Up);
@@ -57,7 +57,7 @@ namespace AnimationExample
             _model.MeshRenderer.CenterModelToOrigin();
             _model.MeshRenderer.SetTexture(Content.Load<Texture2D>("Psyduck"));
             _modelCont = new ANSKModelContainer(_model, this, Vector3.Zero);
-            _model.PlayAnimation("One");
+            //_model.PlayAnimation("One");
 
             world = Matrix.CreateTranslation(0, 0, 0);
             view = Matrix.CreateLookAt(new Vector3(0, 0, 3), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
@@ -118,7 +118,10 @@ namespace AnimationExample
                 _model.AAC.BlendShapesControl.ChangeBlendValue("InnerBlend", 1);
             else if (_inputs.IsFirstPressed(Keys.Q))
                 _model.AAC.BlendShapesControl.ChangeBlendValue("InnerBlend", 0);
-
+            if (_inputs.IsFirstPressed(Keys.D2))
+                _model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 1);
+            else if (_inputs.IsFirstPressed(Keys.X))
+                _model.AAC.BlendShapesControl.ChangeBlendValue("OuterBlend", 0);
             if (_inputs.IsFirstPressed(Keys.Z))
                 _model.PlayAnimation("One");
             else if (_inputs.IsFirstPressed(Keys.C))
