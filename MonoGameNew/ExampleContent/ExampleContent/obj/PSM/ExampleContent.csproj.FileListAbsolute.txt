@@ -1,0 +1,5 @@
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\obj\PSM\ExampleContent.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\obj\PSM\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\bin\PSM\Content\CubeTest3.xnb
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\bin\PSM\IgnoreMe.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\obj\PSM\IgnoreMe.dll

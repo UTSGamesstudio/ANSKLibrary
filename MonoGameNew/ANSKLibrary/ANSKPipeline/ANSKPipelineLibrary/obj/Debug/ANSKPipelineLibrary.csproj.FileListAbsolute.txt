@@ -1,0 +1,11 @@
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\ANSKPipelineLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\ANSKPipelineLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\Microsoft.Xna.Framework.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\Microsoft.Xna.Framework.xml
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\obj\Debug\ANSKPipelineLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\obj\Debug\ANSKPipelineLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipelineLibrary\obj\Debug\ANSKPipelineLibrary.csprojResolveAssemblyReference.cache

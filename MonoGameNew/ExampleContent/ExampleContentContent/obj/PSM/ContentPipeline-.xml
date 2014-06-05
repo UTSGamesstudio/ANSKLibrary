@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>CubeTest3.fbx</Source>
+      <Name>CubeTest3</Name>
+      <Importer>ModelAnimationImporterFbx</Importer>
+      <Processor>ModelAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\bin\PSM\Content\CubeTest3.xnb</Output>
+      <Time>2014-06-04T16:18:25.8782223+10:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID Null="true" />
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>PSM</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContentContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContentContent\obj\PSM\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ExampleContent\ExampleContent\bin\PSM\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\MSBuild\MonoGame\v3.0\MonoGameContentProcessors.dll</Key>
+        <Value>2013-11-12T06:47:04+11:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2012-09-06T13:52:54+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2012-09-06T13:52:54+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2012-09-06T13:52:54+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2012-09-06T13:52:54+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2012-09-06T13:52:54+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2012-09-06T13:52:54+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\bin\x86\Debug\ANSKPipeline.dll</Key>
+        <Value>2014-06-04T20:56:11.1764709+10:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-11-11T17:09:06.390491+11:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

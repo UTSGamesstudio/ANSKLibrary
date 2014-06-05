@@ -1,0 +1,2 @@
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKLibrary\ANSKLibrary.csproj;x86
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\MonoGameExample.csproj;x86

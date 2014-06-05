@@ -1,0 +1,8 @@
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\obj\x86\Debug\ANSKPipeline.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\bin\x86\Debug\ANSKPipeline.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\bin\x86\Debug\ANSKPipeline.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\bin\x86\Debug\ANSKPipelineLibrary.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\bin\x86\Debug\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\bin\x86\Debug\ANSKPipelineLibrary.pdb
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\obj\x86\Debug\ANSKPipeline.dll
+C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKPipeline\ANSKPipeline\obj\x86\Debug\ANSKPipeline.pdb

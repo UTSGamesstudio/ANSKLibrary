@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>JOSHUA-PC</Machine>
+    <WindowsUser>Joshua</WindowsUser>
+    <SolutionConfiguration>Debug|x86</SolutionConfiguration>
+    <PackageArchitecture>x86</PackageArchitecture>
+    <RegisteredManifestChecksum>C7125FA0A36DB0E00C89D6FB36AC44F583BD8C7FBE3D61B8D65A3875883D0C3C</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>3e72d69c-1a5f-41e2-8f1e-63e404241c24_1.0.0.0_x86__5yqrpw1pjcztt</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>3e72d69c-1a5f-41e2-8f1e-63e404241c24_5yqrpw1pjcztt!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>3e72d69c-1a5f-41e2-8f1e-63e404241c24</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Joshua</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-04T10:53:32.565</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\MonoGameExample.exe">
+      <PackagePath>MonoGameExample.exe</PackagePath>
+      <Modified>2014-06-04T11:19:57.532</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\MonoGameExample.pdb">
+      <PackagePath>MonoGameExample.pdb</PackagePath>
+      <Modified>2014-06-04T11:19:57.519</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKLibrary\bin\x86\Debug\ANSKLibrary.pdb">
+      <PackagePath>ANSKLibrary.pdb</PackagePath>
+      <Modified>2014-06-04T11:19:57.315</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKLibrary\bin\x86\Debug\ANSKLibrary.dll">
+      <PackagePath>ANSKLibrary.dll</PackagePath>
+      <Modified>2014-06-04T11:19:57.331</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll">
+      <PackagePath>MonoGame.Framework.dll</PackagePath>
+      <Modified>2013-11-11T19:46:28.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.Direct2D1.dll">
+      <PackagePath>SharpDX.Direct2D1.dll</PackagePath>
+      <Modified>2013-10-17T13:50:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.Direct3D11.dll">
+      <PackagePath>SharpDX.Direct3D11.dll</PackagePath>
+      <Modified>2013-10-17T13:50:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.dll">
+      <PackagePath>SharpDX.dll</PackagePath>
+      <Modified>2013-10-17T13:50:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.DXGI.dll">
+      <PackagePath>SharpDX.DXGI.dll</PackagePath>
+      <Modified>2013-10-17T13:50:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.MediaFoundation.dll">
+      <PackagePath>SharpDX.MediaFoundation.dll</PackagePath>
+      <Modified>2013-10-17T13:50:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.XAudio2.dll">
+      <PackagePath>SharpDX.XAudio2.dll</PackagePath>
+      <Modified>2013-10-17T13:50:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\SharpDX.XInput.dll">
+      <PackagePath>SharpDX.XInput.dll</PackagePath>
+      <Modified>2013-10-17T13:50:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Content\CubeTest3Anims.ansk">
+      <PackagePath>Content\CubeTest3Anims.ansk</PackagePath>
+      <Modified>2014-06-04T10:56:28.817</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-02-19T21:24:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-02-19T21:24:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-02-19T21:24:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-02-19T21:24:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2014-06-04T10:53:31.885</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
