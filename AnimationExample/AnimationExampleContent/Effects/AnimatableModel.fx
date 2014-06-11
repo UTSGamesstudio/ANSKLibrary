@@ -48,8 +48,8 @@ void Skin(inout VSBasicInput vin)
     float4x3 skinning = 0;
 
     [unroll]
-    //for (int i = 0; i < vin.boneCount; i++)
-	for (int i = 0; i < 1; i++)
+    for (int i = 0; i < vin.boneCount; i++)
+	//for (int i = 0; i < 1; i++)
     {
         skinning += bones[vin.indices[i]] * vin.weights[i];
     }

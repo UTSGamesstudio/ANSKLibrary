@@ -105,7 +105,7 @@ namespace ModelAnimationLibrary
             return _vertDecsModel;
         }
 
-        public void Draw(GameTime gameTime, Matrix[] bones, bool animatable)
+        public void Draw(GameTime gameTime, Matrix[] bones, bool animatable, Matrix worlProj)
         {
             ANSKVertexDeclarationAnimatable[] skinnedAnim = _vertDecsAnim.ToArray();
 
@@ -137,11 +137,18 @@ namespace ModelAnimationLibrary
             else
                 _effect.CurrentTechnique = _effect.Techniques["Normal"];
 
-            /*if (_renderType == MeshRenderer.ModelRenderType.Animatable)
+            //if (_renderType == MeshRenderer.ModelRenderType.Animatable)
+            /*if (animatable)
             {
                 for (int i = 0; i < _vertDecsAnim.Count; i++)
                 {
-                    skinnedAnim[i].Position = Vector3.Transform(_vertDecsAnim[i].Position, bones[_vertDecsAnim[i].Indices[0]]);
+                    Matrix skinningData = Matrix.Identity;
+
+                    for (int q = 0; q < _vertDecsAnim[i].Indices.Count; q++)
+                        skinningData += bones[_vertDecsAnim[i].Indices[q]] * _vertDecsAnim[i].Weights[q];
+
+                    skinnedAnim[i].Position = Vector3.Transform(skinnedAnim[i].Position, skinningData);
+                    skinnedAnim[i].Position = Vector3.Transform(skinnedAnim[i].Position, worlProj);
                 }
 
                 _vertBuffer.SetData<ANSKVertexDeclarationAnimatable>(skinnedAnim);

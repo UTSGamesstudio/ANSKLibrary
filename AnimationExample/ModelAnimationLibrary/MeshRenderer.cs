@@ -202,7 +202,7 @@ namespace ModelAnimationLibrary
                 _meshParts[i].MeshEffect.Parameters["diffuseFactor"].SetValue((float)_meshParts[i].MeshMaterial.DiffuseFactor);
                 _meshParts[i].MeshEffect.Parameters["diffuseLight"].SetValue(Vector3.Forward);
 
-                _meshParts[i].Draw(gameTime, bones, animatable);
+                _meshParts[i].Draw(gameTime, bones, animatable, worldProj);
             }
         }
 
