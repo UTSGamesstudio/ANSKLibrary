@@ -12,6 +12,7 @@ namespace MonoGameExample
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         ANSKModel model;
+        Matrix view, proj;
 
         public Game1()
         {
@@ -28,6 +29,8 @@ namespace MonoGameExample
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            view = Matrix.CreateLookAt(new Vector3(0, 0, 3), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+            proj = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.01f, 100f);
 
             base.Initialize();
         }
@@ -41,6 +44,7 @@ namespace MonoGameExample
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             model = new ANSKModel(XmlImporter.LoadANSK("CubeTest3"));
+            model.ManualInitialise(GraphicsDevice, Content.Load<Effect>("AnimatableModel"), this);
             // TODO: use this.Content to load your game content here
         }
 
@@ -61,7 +65,7 @@ namespace MonoGameExample
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-
+            model.Update(gameTime, Matrix.Identity);
             base.Update(gameTime);
         }
 
@@ -72,6 +76,8 @@ namespace MonoGameExample
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            model.Draw(gameTime, Matrix.Identity, view, proj);
 
             // TODO: Add your drawing code here
 

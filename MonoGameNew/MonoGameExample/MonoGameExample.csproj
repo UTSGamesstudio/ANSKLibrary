@@ -136,6 +136,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="Content\CubeTest3Anims.ansk" />
+    <Content Include="Content\AnimatableModel.xnb" />
     <None Include="MonoGameExample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

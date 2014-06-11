@@ -283,7 +283,6 @@ namespace ANSKLibrary
                 switch (reader.Name)
                 {
                     case "BasicInfo":
-                        reader.Read();
                         name = reader.GetAttribute("Name");
                         id = int.Parse(reader.GetAttribute("Id"));
                         parentId = int.Parse(reader.GetAttribute("ParentId"));
@@ -294,12 +293,14 @@ namespace ANSKLibrary
 
                     case "Indice":
                         reader.Read();
-                        inds.Add(int.Parse(reader.ReadElementContentAsString()));
+                        inds.Add(int.Parse(reader.Value));
+                        reader.Read();
                         break;
 
                     case "Weight":
                         reader.Read();
-                        weights.Add(float.Parse(reader.ReadElementContentAsString()));
+                        weights.Add(float.Parse(reader.Value));
+                        reader.Read();
                         break;
                 }
 
@@ -324,22 +325,22 @@ namespace ANSKLibrary
                 switch (reader.Name)
                 {
                     case "AnimationClip":
-                        reader.Read();
+                        //reader.Read();
                         animList.Add(XMLToAnimationClipXML(reader));
                         break;
 
                     case "BindPose":
-                        reader.Read();
+                        //reader.Read();
                         bPose = XMLToBindPose(reader);
                         break;
 
                     case "InverseBindPose":
-                        reader.Read();
+                        //reader.Read();
                         iBPose = XMLToInverseBindPose(reader);
                         break;
 
                     case "SkeletonHierarchy":
-                        reader.Read();
+                        //reader.Read();
                         bData = XMLToSkeletonHierarchy(reader);
                         break;
                 }
@@ -366,12 +367,14 @@ namespace ANSKLibrary
                 {
                     case "Name":
                         reader.Read();
-                        name = reader.ReadContentAsString();
+                        name = reader.Value;
+                        reader.Read();
                         break;
 
                     case "Timespan":
                         reader.Read();
-                        timespan = new TimeSpan(reader.ReadContentAsLong());
+                        timespan = new TimeSpan(Convert.ToUInt32(reader.Value));
+                        reader.Read();
                         break;
 
                     case "Keyframes":
@@ -525,7 +528,10 @@ namespace ANSKLibrary
                 reader.Read();
             }
 
-            return new BoneData(numRef, (BoneData.SpecialBoneType)type);
+            if (type != null)
+                return new BoneData(numRef, (BoneData.SpecialBoneType)type);
+            else
+                return new BoneData(numRef);
         }
 
         private static BlendShapeContent XMLToBlendShapeContent(XmlReader reader)

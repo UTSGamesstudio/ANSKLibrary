@@ -16,25 +16,25 @@
     <AppXManifest Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2014-06-04T10:53:32.565</Modified>
+      <Modified>2014-06-11T10:50:07.253</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\MonoGameExample.exe">
       <PackagePath>MonoGameExample.exe</PackagePath>
-      <Modified>2014-06-04T11:19:57.532</Modified>
+      <Modified>2014-06-11T10:50:06.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\MonoGameExample.pdb">
       <PackagePath>MonoGameExample.pdb</PackagePath>
-      <Modified>2014-06-04T11:19:57.519</Modified>
+      <Modified>2014-06-11T10:50:06.863</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKLibrary\bin\x86\Debug\ANSKLibrary.pdb">
       <PackagePath>ANSKLibrary.pdb</PackagePath>
-      <Modified>2014-06-04T11:19:57.315</Modified>
+      <Modified>2014-06-11T10:44:43.708</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\ANSKLibrary\ANSKLibrary\bin\x86\Debug\ANSKLibrary.dll">
       <PackagePath>ANSKLibrary.dll</PackagePath>
-      <Modified>2014-06-04T11:19:57.331</Modified>
+      <Modified>2014-06-11T10:44:43.727</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\MSBuild\..\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll">
       <PackagePath>MonoGame.Framework.dll</PackagePath>
@@ -72,6 +72,10 @@
       <PackagePath>Content\CubeTest3Anims.ansk</PackagePath>
       <Modified>2014-06-04T10:56:28.817</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Content\AnimatableModel.xnb">
+      <PackagePath>Content\AnimatableModel.xnb</PackagePath>
+      <Modified>2014-06-11T10:48:44.934</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -94,7 +98,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\bin\Windows8\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2014-06-04T10:53:31.885</Modified>
+      <Modified>2014-06-11T10:50:07.139</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

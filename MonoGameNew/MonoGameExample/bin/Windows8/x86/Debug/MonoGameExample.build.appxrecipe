@@ -52,6 +52,9 @@
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Content\CubeTest3Anims.ansk">
       <PackagePath>Content\CubeTest3Anims.ansk</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Content\AnimatableModel.xnb">
+      <PackagePath>Content\AnimatableModel.xnb</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Joshua\Documents\ANSKLibrary\MonoGameNew\MonoGameExample\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
